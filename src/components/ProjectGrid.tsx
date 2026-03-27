@@ -1,5 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {MdArrowForward} from 'react-icons/md';
+import {Link} from '@/i18n/routing';
 
 export default function ProjectGrid() {
   const t = useTranslations('ProjectListPage.projects');
@@ -59,9 +60,9 @@ export default function ProjectGrid() {
                 <span className="text-[10px] uppercase text-slate-500 font-bold tracking-widest">{p.m2Label}</span>
                 <span className="text-primary font-bold">{p.m2Val}</span>
               </div>
-              <a className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all cursor-pointer">
+              <Link href={`/projects/${p.id}`} className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all cursor-pointer">
                 <MdArrowForward className="text-base" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

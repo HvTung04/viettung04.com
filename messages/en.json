@@ -146,5 +146,74 @@
       "primaryBtn": "Start a Project",
       "secondaryBtn": "View Services"
     }
+  },
+  "ProjectDetail": {
+    "project1": {
+      "header": {
+        "overview": "Overview",
+        "challenge": "Challenge",
+        "architecture": "Architecture",
+        "impact": "Impact",
+        "hireMe": "Hire Me"
+      },
+      "hero": {
+        "titlePart1": "Neural ",
+        "titleHighlight": "Surveillance",
+        "titlePart2": " Engine",
+        "subtitle": "Case Study: AI & Computer Vision",
+        "description": "A high-performance real-time computer vision system for automated security monitoring and threat detection using deep learning, processing 4K streams with sub-15ms latency.",
+        "github": "GitHub Repository",
+        "demo": "Live Demo",
+        "status": "SYSTEM_STATUS: ACTIVE",
+        "fps": "FPS: 120",
+        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDqbcSS0SQojQDeI3JKSQRcbdUafBjRxucbF02VgzezDmsfMrY_oc0L6NtTu_q-MGyC0iya7nfKM-cx9vffWrs2NatSrUD8c-LwX9HKSAVi4bJ9cLDN38sye04ugzNYIpcScJkaWVrbmOEnPL_5v9SFz0D_uALiiMpLmsCG1clYblbJq2afF2fizL-BWMjSRaDNbK61P_8jkv3hTpUVrcTwpa0Pa6KyzUplwi03HGbdEMtTAeLDPqRg1iiiv12xS-e6mBrTnCofLvMK"
+      },
+      "challenge": {
+        "title": "The Challenge",
+        "p1": "Traditional surveillance systems suffer from high latency and significant false alarm rates. In high-security environments, the gap between an incident and its detection can be catastrophic.",
+        "p2": "The core challenge was to engineer a pipeline capable of processing multiple 4K video streams simultaneously. This required maintaining a sub-15ms inference time per frame while achieving over 98% precision in diverse lighting conditions, from harsh midday sun to low-light night environments."
+      },
+      "architecture": {
+        "title": "Technical Architecture",
+        "cards": [
+          {
+            "layer": "Ingestion Layer",
+            "title": "Multi-Stream RTSP",
+            "desc": "Low-latency video decoding using hardware-accelerated GStreamer pipelines.",
+            "icon": "videocam"
+          },
+          {
+            "layer": "Inference Engine",
+            "title": "TensorRT Optimizer",
+            "desc": "YOLOv8 backbone optimized with FP16 quantization for NVIDIA Jetson/Tesla hardware.",
+            "icon": "memory"
+          },
+          {
+            "layer": "Action Layer",
+            "title": "Logic Controller",
+            "desc": "Asynchronous alerting system with WebSocket integration for real-time dashboarding.",
+            "icon": "notifications_active"
+          }
+        ]
+      },
+      "techStack": {
+        "title": "Tech Stack"
+      },
+      "results": {
+        "title": "Key Results & Impact",
+        "items": [
+          { "value": "12ms", "label": "Inference Time" },
+          { "value": "98.4%", "label": "Precision Rate" },
+          { "value": "16", "label": "Parallel Streams" },
+          { "value": "40%", "label": "Latency Reduction" }
+        ]
+      },
+      "footer": {
+        "title": "Interested in working together?",
+        "subtitle": "Let's build the next generation of AI systems.",
+        "contact": "Get in Touch",
+        "copyright": "© 2024 NEURAL_ENGINE_PRJ"
+      }
+    }
   }
 }

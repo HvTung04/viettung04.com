@@ -146,5 +146,74 @@
       "primaryBtn": "Bắt đầu Dự án",
       "secondaryBtn": "Xem Dịch vụ"
     }
+  },
+  "ProjectDetail": {
+    "project1": {
+      "header": {
+        "overview": "Tổng quan",
+        "challenge": "Thách thức",
+        "architecture": "Kiến trúc",
+        "impact": "Tác động",
+        "hireMe": "Hợp tác"
+      },
+      "hero": {
+        "titlePart1": "Động cơ ",
+        "titleHighlight": "Giám sát ",
+        "titlePart2": "Nơ-ron",
+        "subtitle": "Case Study: AI & Thị giác Máy tính",
+        "description": "Một hệ thống thị giác máy tính theo thời gian thực hiệu suất cao phục vụ giám sát an ninh tự động và phát hiện mối đe dọa sử dụng deep learning, xử lý luồng video 4K với độ trễ dưới 15ms.",
+        "github": "Repo GitHub",
+        "demo": "Demo Trực tiếp",
+        "status": "TRẠNG THÁI: HOẠT ĐỘNG",
+        "fps": "FPS: 120",
+        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDqbcSS0SQojQDeI3JKSQRcbdUafBjRxucbF02VgzezDmsfMrY_oc0L6NtTu_q-MGyC0iya7nfKM-cx9vffWrs2NatSrUD8c-LwX9HKSAVi4bJ9cLDN38sye04ugzNYIpcScJkaWVrbmOEnPL_5v9SFz0D_uALiiMpLmsCG1clYblbJq2afF2fizL-BWMjSRaDNbK61P_8jkv3hTpUVrcTwpa0Pa6KyzUplwi03HGbdEMtTAeLDPqRg1iiiv12xS-e6mBrTnCofLvMK"
+      },
+      "challenge": {
+        "title": "Thách thức",
+        "p1": "Các hệ thống giám sát truyền thống thường có độ trễ cao và tỷ lệ báo động giả đáng kể. Trong các môi trường an ninh cao, khoảng cách giữa một sự cố và việc phát hiện sự cố có thể gây ra hậu quả tàn khốc.",
+        "p2": "Thách thức cốt lõi là thiết kế một luồng xử lý có khả năng xử lý đồng thời nhiều luồng video 4K. Điều này đòi hỏi duy trì thời gian suy luận dưới 15ms cho mỗi khung hình trong khi đạt độ chính xác trên 98% ở nhiều điều kiện ánh sáng khác nhau, từ ánh nắng gắt ban trưa đến môi trường ban đêm thiếu sáng."
+      },
+      "architecture": {
+        "title": "Kiến trúc Kỹ thuật",
+        "cards": [
+          {
+            "layer": "Lớp Tiếp nhận",
+            "title": "Đa luồng RTSP",
+            "desc": "Giải mã video với độ trễ thấp sử dụng pipeline GStreamer gia tốc phần cứng.",
+            "icon": "videocam"
+          },
+          {
+            "layer": "Động cơ Suy luận",
+            "title": "Trình tối ưu TensorRT",
+            "desc": "Bộ khung YOLOv8 được tối ưu hóa với lượng tử hóa FP16 cho phần cứng NVIDIA Jetson/Tesla.",
+            "icon": "memory"
+          },
+          {
+            "layer": "Lớp Hành động",
+            "title": "Bộ điều khiển Logic",
+            "desc": "Hệ thống cảnh báo bất đồng bộ tích hợp WebSocket cho báo cáo thời gian thực.",
+            "icon": "notifications_active"
+          }
+        ]
+      },
+      "techStack": {
+        "title": "Công nghệ"
+      },
+      "results": {
+        "title": "Kết quả & Tác động",
+        "items": [
+          { "value": "12ms", "label": "Thời gian Suy luận" },
+          { "value": "98.4%", "label": "Độ chính xác" },
+          { "value": "16", "label": "Luồng Song song" },
+          { "value": "40%", "label": "Giảm Độ trễ" }
+        ]
+      },
+      "footer": {
+        "title": "Hứng thú cùng hợp tác?",
+        "subtitle": "Hãy cùng xây dựng thế hệ hệ thống AI tiếp theo.",
+        "contact": "Liên hệ ngay",
+        "copyright": "© 2024 DỰ_ÁN_ĐỘNG_CƠ_NƠ_RON"
+      }
+    }
   }
 }
