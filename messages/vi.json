@@ -77,5 +77,74 @@
   },
   "Footer": {
     "rights": "© 2026 VietTung04 AI Engineer Portfolio. All rights reserved."
+  },
+  "ProjectListPage": {
+    "title": "Dự án Nổi bật",
+    "description": "Bộ sưu tập các hệ thống mức độ sản xuất gồm Thị giác Máy tính, Xử lý Ngôn ngữ Tự nhiên và Xử lý Dữ liệu Phân tán. Tập trung vào các giải pháp AI có tính ảnh hưởng cao.",
+    "filters": {
+      "all": "Tất cả Dự án",
+      "cv": "Thị giác Máy tính",
+      "nlp": "NLP",
+      "data": "Kỹ sư Dữ liệu",
+      "rl": "Học Tăng cường"
+    },
+    "projects": {
+      "project1": {
+        "title": "Động cơ Giám sát Nơ-ron",
+        "description": "Hệ thống phát hiện và theo dõi đối tượng theo thời gian thực có khả năng giám sát hơn 100 luồng video đồng thời với triển khai tại biên.",
+        "badge": "CV",
+        "metrics": {
+          "inference": "Suy luận",
+          "inferenceValue": "12ms",
+          "precision": "Độ chính xác",
+          "precisionValue": "98.4%"
+        }
+      },
+      "project2": {
+        "title": "Bộ phân tích Tài chính Ngữ nghĩa",
+        "description": "Động cơ trích xuất dựa trên Transformer cho các báo cáo tài chính phi cấu trúc, xử lý hơn 10 nghìn trang mỗi phút với độ hồi tưởng cao.",
+        "badge": "NLP",
+        "metrics": {
+          "f1": "Điểm F1",
+          "f1Value": "0.94",
+          "efficiency": "Hiệu suất",
+          "efficiencyValue": "Giảm 85%"
+        }
+      },
+      "project3": {
+        "title": "Bộ điều phối Pipeline Petabyte",
+        "description": "Kiến trúc dữ liệu thống nhất cho huấn luyện ML, xử lý tự động ETL, quản lý phiên bản và lưu trữ đặc trưng cho 15+ nhóm nội bộ.",
+        "badge": "DATA",
+        "metrics": {
+          "throughput": "Thông lượng",
+          "throughputValue": "1.2M req/s",
+          "uptime": "Uptime",
+          "uptimeValue": "99.99%"
+        }
+      }
+    },
+    "impactMetrics": {
+      "impact": {
+        "label": "Tổng Giá trị Tạo ra",
+        "value": "Tiết kiệm $4.5M+",
+        "trend": "Tăng trưởng +24% so với năm trước"
+      },
+      "models": {
+        "label": "Mô hình Thực tế",
+        "value": "28 Agent Hoạt động",
+        "trend": "+8 dự án quý này"
+      },
+      "optimization": {
+        "label": "Tối ưu hóa Suy luận",
+        "value": "Độ trễ 8.5ms",
+        "trend": "Giảm 15% thời gian phản hồi"
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng kiến tạo tương lai?",
+      "description": "Tôi hiện đang nhận triển khai các dự án AI phức tạp và tư vấn chiến lược. Hãy cùng trao đổi về lộ trình của bạn.",
+      "primaryBtn": "Bắt đầu Dự án",
+      "secondaryBtn": "Xem Dịch vụ"
+    }
   }
 }

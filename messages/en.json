@@ -77,5 +77,74 @@
   },
   "Footer": {
     "rights": "© 2026 VietTung04 AI Engineer Portfolio. All rights reserved."
+  },
+  "ProjectListPage": {
+    "title": "Featured Projects",
+    "description": "A collection of production-grade systems spanning Computer Vision, NLP, and Distributed Data Engineering. Focused on high-impact AI solutions.",
+    "filters": {
+      "all": "All Projects",
+      "cv": "Computer Vision",
+      "nlp": "NLP",
+      "data": "Data Engineering",
+      "rl": "Reinforcement Learning"
+    },
+    "projects": {
+      "project1": {
+        "title": "Neural Surveillance Engine",
+        "description": "Real-time object detection and tracking system capable of monitoring 100+ concurrent video streams with edge deployment.",
+        "badge": "CV",
+        "metrics": {
+          "inference": "Inference",
+          "inferenceValue": "12ms",
+          "precision": "Precision",
+          "precisionValue": "98.4%"
+        }
+      },
+      "project2": {
+        "title": "Semantic Finance Parser",
+        "description": "Transformer-based extraction engine for unstructured financial reports, processing 10k+ pages per minute with high recall.",
+        "badge": "NLP",
+        "metrics": {
+          "f1": "F1 Score",
+          "f1Value": "0.94",
+          "efficiency": "Efficiency",
+          "efficiencyValue": "85% Redux"
+        }
+      },
+      "project3": {
+        "title": "Petabyte Pipeline Orchestrator",
+        "description": "Unified data fabric for ML training, handling automated ETL, versioning, and feature storage for 15+ internal teams.",
+        "badge": "DATA",
+        "metrics": {
+          "throughput": "Throughput",
+          "throughputValue": "1.2M req/s",
+          "uptime": "Uptime",
+          "uptimeValue": "99.99%"
+        }
+      }
+    },
+    "impactMetrics": {
+      "impact": {
+        "label": "Total Impact Created",
+        "value": "$4.5M+ Saved",
+        "trend": "+24% YoY growth"
+      },
+      "models": {
+        "label": "Models in Production",
+        "value": "28 Active Agents",
+        "trend": "+8 this quarter"
+      },
+      "optimization": {
+        "label": "Inference Optimization",
+        "value": "8.5ms Latency",
+        "trend": "-15% avg response"
+      }
+    },
+    "cta": {
+      "title": "Ready to build the future?",
+      "description": "I'm currently available for complex AI implementation projects and strategic consulting. Let's discuss your roadmap.",
+      "primaryBtn": "Start a Project",
+      "secondaryBtn": "View Services"
+    }
   }
 }
