@@ -7,6 +7,18 @@
   --color-background-dark: #101722;
   --font-display: var(--font-inter), sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-label: var(--font-space-grotesk), sans-serif;
+  --color-surface: #0B0F19;
+  --color-surface-container-highest: #242c42;
+  --color-surface-container-high: #1a2133;
+  --color-surface-container-low: #0e1321;
+  --color-surface-container-lowest: #06080d;
+  --color-surface-container: #121826;
+  --color-on-surface: #F1F5F9;
+  --color-on-background: #F1F5F9;
+  --color-outline: #1e293b;
+  --color-error: #ef4444;
+  --color-tertiary: #10b981;
 }
 
 @layer utilities {
