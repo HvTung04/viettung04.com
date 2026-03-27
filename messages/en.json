@@ -1,0 +1,81 @@
+{
+  "Index": {
+    "title": "AI Engineer Portfolio | Intelligent Systems"
+  },
+  "Navbar": {
+    "home": "Home",
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "hireMe": "Hire Me",
+    "logo": "AI Portfolio"
+  },
+  "Hero": {
+    "availableBadge": "Available for Projects",
+    "titlePart1": "AI Engineer building ",
+    "titleHighlight": "intelligent systems",
+    "titlePart2": " that turn data into products.",
+    "description": "Senior AI Engineer specializing in production-ready machine learning, neural architectures, and scalable data pipelines.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "alt": "Abstract technical neural network visualization with glowing nodes and connections"
+  },
+  "Metrics": {
+    "projects": "AI Projects Delivered",
+    "models": "Models in Production",
+    "accuracy": "Accuracy Improvement",
+    "satisfaction": "Client Satisfaction"
+  },
+  "Projects": {
+    "title": "Featured Projects",
+    "subtitle": "Highlighting real-world impact and complex problem-solving using state-of-the-art AI.",
+    "viewAll": "All Case Studies",
+    "project1": {
+      "title": "Predictive Analytics Engine",
+      "description": "Real-time demand forecasting for a global logistics provider, resulting in 15% reduction in overhead costs.",
+      "badge": "96% Accuracy"
+    },
+    "project2": {
+      "title": "Computer Vision Pipeline",
+      "description": "Automated defect detection system for high-precision manufacturing using custom YOLOv8 architectures.",
+      "badge": "Real-time Processing"
+    },
+    "project3": {
+      "title": "NLP Content Agent",
+      "description": "Multi-language context-aware support bot using RAG (Retrieval Augmented Generation) and vector databases.",
+      "badge": "LLM Powered"
+    }
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "aiTitle": "AI / Machine Learning",
+    "dataTitle": "Data Engineering",
+    "backendTitle": "Backend & Infrastructure"
+  },
+  "Services": {
+    "title": "Services",
+    "subtitle": "End-to-end AI expertise from research to production-ready deployments.",
+    "service1": {
+      "title": "AI System Development",
+      "description": "Custom ML model training and integration into your existing software infrastructure."
+    },
+    "service2": {
+      "title": "Computer Vision",
+      "description": "Object detection, image segmentation, and facial recognition systems for industrial use."
+    },
+    "service3": {
+      "title": "AI Consulting",
+      "description": "Strategy and roadmap development for organizations looking to integrate LLMs and generative AI."
+    }
+  },
+  "Cta": {
+    "title": "Interested in building AI solutions together?",
+    "subtitle": "Let's discuss how we can leverage machine learning to optimize your operations or build your next innovative product.",
+    "button": "Start a Project"
+  },
+  "Footer": {
+    "rights": "© 2026 VietTung04 AI Engineer Portfolio. All rights reserved."
+  }
+}

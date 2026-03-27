@@ -1,0 +1,81 @@
+{
+  "Index": {
+    "title": "Hồ sơ Kỹ sư AI | Hệ thống Thông minh"
+  },
+  "Navbar": {
+    "home": "Trang chủ",
+    "projects": "Dự án",
+    "services": "Dịch vụ",
+    "about": "Giới thiệu",
+    "blog": "Blog",
+    "contact": "Liên hệ",
+    "hireMe": "Thuê tôi",
+    "logo": "Hồ sơ AI"
+  },
+  "Hero": {
+    "availableBadge": "Sẵn sàng nhận dự án",
+    "titlePart1": "Kỹ sư AI xây dựng ",
+    "titleHighlight": "hệ thống thông minh",
+    "titlePart2": " biến dữ liệu thành sản phẩm.",
+    "description": "Kỹ sư AI chuyên sâu triển khai machine learning, kiến trúc mạng nơ-ron và luồng xử lý dữ liệu với khả năng mở rộng lớn.",
+    "viewProjects": "Xem dự án",
+    "contactMe": "Liên hệ tôi",
+    "alt": "Minh họa mạng nơ-ron kỹ thuật trừu tượng với các nút phát sáng và kết nối"
+  },
+  "Metrics": {
+    "projects": "Dự án AI đã hoàn thành",
+    "models": "Mô hình thực tế",
+    "accuracy": "Cải thiện độ chính xác",
+    "satisfaction": "Sự hài lòng của khách hàng"
+  },
+  "Projects": {
+    "title": "Dự án Nổi bật",
+    "subtitle": "Tập trung vào tác động thực tế và giải quyết các vấn đề phức tạp sử dụng AI tiên tiến nhất.",
+    "viewAll": "Tất cả Case Study",
+    "project1": {
+      "title": "Công cụ Phân tích Dự đoán",
+      "description": "Dự báo nhu cầu theo thời gian thực cho nhà cung cấp logistics toàn cầu, giúp giảm 15% chi phí vận hành.",
+      "badge": "Độ chính xác 96%"
+    },
+    "project2": {
+      "title": "Hệ thống Thị giác Máy tính",
+      "description": "Hệ thống phát hiện lỗi tự động cho sản xuất chính xác cao sử dụng kiến trúc YOLOv8 tùy chỉnh.",
+      "badge": "Xử lý Thời gian thực"
+    },
+    "project3": {
+      "title": "Trợ lý Nội dung NLP",
+      "description": "Bot hỗ trợ đa ngôn ngữ nhận thức ngữ cảnh sử dụng RAG (Retrieval Augmented Generation) và cơ sở dữ liệu vector.",
+      "badge": "Tích hợp LLM"
+    }
+  },
+  "TechStack": {
+    "title": "Công nghệ Sử dụng",
+    "aiTitle": "AI / Machine Learning",
+    "dataTitle": "Kỹ sư Dữ liệu",
+    "backendTitle": "Backend & Hạ tầng"
+  },
+  "Services": {
+    "title": "Dịch vụ",
+    "subtitle": "Chuyên môn AI toàn diện từ nghiên cứu đến triển khai thực tế.",
+    "service1": {
+      "title": "Phát triển Hệ thống AI",
+      "description": "Huấn luyện mô hình ML tùy chỉnh và tích hợp vào hạ tầng phần mềm hiện tại của bạn."
+    },
+    "service2": {
+      "title": "Thị giác Máy tính",
+      "description": "Hệ thống phát hiện đối tượng, phân vùng hình ảnh và nhận dạng khuôn mặt trong công nghiệp."
+    },
+    "service3": {
+      "title": "Tư vấn AI",
+      "description": "Phát triển chiến lược và lộ trình cho các tổ chức muốn tích hợp LLMs và AI tạo sinh."
+    }
+  },
+  "Cta": {
+    "title": "Bạn quan tâm đến việc cùng xây dựng giải pháp AI?",
+    "subtitle": "Hãy cùng thảo luận cách áp dụng machine learning để tối ưu hóa vận hành hoặc xây dựng sản phẩm đột phá tiếp theo của bạn.",
+    "button": "Bắt đầu Dự án"
+  },
+  "Footer": {
+    "rights": "© 2026 VietTung04 AI Engineer Portfolio. All rights reserved."
+  }
+}
