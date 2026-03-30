@@ -14,31 +14,43 @@ export async function createProject(formData: FormData) {
   const githubUrl = formData.get('githubUrl') as string;
   const demoUrl = formData.get('demoUrl') as string;
   const imageUrl = formData.get('imageUrl') as string;
-  const techStackJson = formData.get('techStack') as string; // Will receive a JSON string
-  const metricsJson = formData.get('metrics') as string; // Will receive a JSON string
+  const techStackJson = formData.get('techStack') as string;
+  const metricsJson = formData.get('metrics') as string;
+
+  const viTitle = (formData.get('viTitle') as string) || '';
+  const viDescription = (formData.get('viDescription') as string) || '';
+  const viContent = (formData.get('viContent') as string) || '';
 
   const techStack = techStackJson ? JSON.parse(techStackJson) : [];
   const metrics = metricsJson ? JSON.parse(metricsJson) : [];
 
-  await prisma.project.create({
-    data: {
-      title,
-      slug,
-      description,
-      category,
-      visibility,
-      status: 'ACTIVE',
-      content,
-      githubUrl,
-      demoUrl,
-      imageUrl,
-      techStack: {
-        create: techStack.map((name: string) => ({ name })),
-      },
-      metrics: {
-        create: metrics.map((m: any) => ({ key: m.key, value: m.value })),
-      },
+  const createData: any = {
+    title,
+    slug,
+    description,
+    category,
+    visibility,
+    status: 'ACTIVE',
+    content,
+    githubUrl,
+    demoUrl,
+    imageUrl,
+    techStack: {
+      create: techStack.map((name: string) => ({ name })),
     },
+    metrics: {
+      create: metrics.map((m: any) => ({ key: m.key, value: m.value })),
+    },
+  };
+
+  if (viTitle || viDescription || viContent) {
+    createData.translations = {
+      create: [{ locale: 'vi', title: viTitle, description: viDescription, content: viContent }],
+    };
+  }
+
+  await prisma.project.create({
+    data: createData,
   });
 
   revalidatePath('/admin/projects');
@@ -46,9 +58,86 @@ export async function createProject(formData: FormData) {
   redirect('/admin/projects');
 }
 
+export async function updateProject(id: string, formData: FormData) {
+  const title = formData.get('title') as string;
+  const slug = formData.get('slug') as string;
+  const description = formData.get('description') as string;
+  const category = formData.get('category') as string;
+  const visibility = formData.get('visibility') as string;
+  const content = formData.get('content') as string;
+  const githubUrl = formData.get('githubUrl') as string;
+  const demoUrl = formData.get('demoUrl') as string;
+  const imageUrl = formData.get('imageUrl') as string;
+  const techStackJson = formData.get('techStack') as string;
+  const metricsJson = formData.get('metrics') as string;
+
+  const viTitle = (formData.get('viTitle') as string) || '';
+  const viDescription = (formData.get('viDescription') as string) || '';
+  const viContent = (formData.get('viContent') as string) || '';
+
+  const techStack = techStackJson ? JSON.parse(techStackJson) : [];
+  const metrics = metricsJson ? JSON.parse(metricsJson) : [];
+
+  // Update base properties
+  await prisma.project.update({
+    where: { id },
+    data: {
+      title,
+      slug,
+      description,
+      category,
+      visibility,
+      content,
+      githubUrl,
+      demoUrl,
+      imageUrl,
+    },
+  });
+
+  // Handle Translations (Upsert)
+  if (viTitle || viDescription || viContent) {
+    await prisma.projectTranslation.upsert({
+      where: {
+        projectId_locale: {
+          projectId: id,
+          locale: 'vi',
+        },
+      },
+      update: { title: viTitle, description: viDescription, content: viContent },
+      create: { projectId: id, locale: 'vi', title: viTitle, description: viDescription, content: viContent },
+    });
+  } else {
+    // Attempt deletion if empty
+    await prisma.projectTranslation.deleteMany({
+      where: { projectId: id, locale: 'vi' },
+    });
+  }
+
+  // Rewrite tech stack and metrics entirely for simplicity
+  await prisma.techStack.deleteMany({ where: { projectId: id } });
+  if (techStack.length > 0) {
+    await prisma.techStack.createMany({
+      data: techStack.map((name: string) => ({ projectId: id, name })),
+    });
+  }
+
+  await prisma.metric.deleteMany({ where: { projectId: id } });
+  if (metrics.length > 0) {
+    await prisma.metric.createMany({
+      data: metrics.map((m: any) => ({ projectId: id, key: m.key, value: m.value })),
+    });
+  }
+
+  revalidatePath('/admin/projects');
+  revalidatePath('/projects');
+  revalidatePath(`/projects/${slug}`);
+  // Don't redirect from Server Action for updates; handled by the client component redirect so UX doesn't break
+}
+
 export async function deleteProject(id: string) {
   await prisma.project.delete({
     where: { id },
   });
   revalidatePath('/admin/projects');
+  revalidatePath('/projects');
 }
