@@ -215,5 +215,25 @@
         "copyright": "© 2024 DỰ_ÁN_ĐỘNG_CƠ_NƠ_RON"
       }
     }
+  },
+  "ProjectDetailPage": {
+    "nav": {
+      "overview": "Tổng quan",
+      "techStack": "Công nghệ",
+      "results": "Kết quả"
+    },
+    "allProjects": "Tất cả dự án",
+    "liveDemo": "Demo trực tiếp",
+    "github": "GitHub",
+    "systemActive": "HỆ THỐNG HOẠT ĐỘNG",
+    "sections": {
+      "techStack": "Công nghệ sử dụng",
+      "results": "Kết quả hiệu năng"
+    },
+    "footer": {
+      "title": "Muốn cùng hợp tác?",
+      "subtitle": "Hãy thảo luận về cách AI có thể tăng tốc doanh nghiệp của bạn.",
+      "copyright": "© 2024 AI Engineer Portfolio. Bảo lưu mọi quyền."
+    }
   }
 }

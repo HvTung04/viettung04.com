@@ -215,5 +215,25 @@
         "copyright": "© 2024 NEURAL_ENGINE_PRJ"
       }
     }
+  },
+  "ProjectDetailPage": {
+    "nav": {
+      "overview": "Overview",
+      "techStack": "Tech Stack",
+      "results": "Results"
+    },
+    "allProjects": "All Projects",
+    "liveDemo": "Live Demo",
+    "github": "GitHub",
+    "systemActive": "SYSTEM ACTIVE",
+    "sections": {
+      "techStack": "Technology Stack",
+      "results": "Performance Results"
+    },
+    "footer": {
+      "title": "Want to work together?",
+      "subtitle": "Let's discuss how AI can accelerate your business.",
+      "copyright": "© 2024 AI Engineer Portfolio. All rights reserved."
+    }
   }
 }
