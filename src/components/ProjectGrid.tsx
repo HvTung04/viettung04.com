@@ -20,7 +20,11 @@ export default function ProjectGrid({ projects }: { projects: ProjectCardData[] 
         const m1 = p.metrics[0];
         const m2 = p.metrics[1];
         return (
-          <div key={p.id} className="group flex flex-col bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl">
+          <Link
+            key={p.id}
+            href={`/projects/${p.slug}`}
+            className="group relative flex flex-col bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 cursor-pointer"
+          >
             <div className="relative aspect-video w-full overflow-hidden">
               <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
               {p.imageUrl ? (
@@ -55,12 +59,12 @@ export default function ProjectGrid({ projects }: { projects: ProjectCardData[] 
                     <span className="text-primary font-bold">{m2.value}</span>
                   </div>
                 )}
-                <Link href={`/projects/${p.slug}`} className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all cursor-pointer ml-auto">
+                <span className="p-2 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all ml-auto">
                   <MdArrowForward className="text-base" />
-                </Link>
+                </span>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
