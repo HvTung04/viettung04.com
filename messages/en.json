@@ -265,5 +265,23 @@
         "resetButton": "Send Another Message"
       }
     }
+  },
+  "BlogList": {
+    "title": "Technical Insights",
+    "description": "Deep dives into high-performance computing, neural architectures, and the infrastructure of modern intelligence.",
+    "featured": "FEATURED",
+    "readArchive": "READ ARCHIVE",
+    "searchTitle": "Search Terminal",
+    "searchPlaceholder": "QUERY_SYSTEM...",
+    "subscribeTitle": "Join the Neural Network",
+    "subscribeBtn": "SUBSCRIBE TO LOGS",
+    "minRead": "{minutes} MIN READ",
+    "categories": {
+      "all": "ALL_SYSTEMS",
+      "llm": "LLM_OPS",
+      "cv": "COMP_VISION",
+      "scale": "SCALABILITY"
+    },
+    "emptyState": "No diagnostic records found in the database."
   }
 }

@@ -23,7 +23,7 @@ export default function Navbar() {
             <Link href="/projects" className={`text-sm transition-colors ${pathname === '/projects' ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-medium hover:text-primary text-slate-600 dark:text-slate-400'}`}>{t('projects')}</Link>
             <Link href="/#services" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('services')}</Link>
             <Link href="/#about" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('about')}</Link>
-            <Link href="/#blog" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('blog')}</Link>
+            <Link href="/blog" className={`text-sm transition-colors ${pathname.startsWith('/blog') ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-medium hover:text-primary text-slate-600 dark:text-slate-400'}`}>{t('blog')}</Link>
             <Link href="/contact" className={`text-sm transition-colors ${pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-medium hover:text-primary text-slate-600 dark:text-slate-400'}`}>{t('contact')}</Link>
           </div>
           <div className="flex items-center gap-3 md:gap-4">

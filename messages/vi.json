@@ -265,5 +265,23 @@
         "resetButton": "Gửi Thêm Một Tin Nhắn Khác"
       }
     }
+  },
+  "BlogList": {
+    "title": "Góc Nhìn Kỹ Thuật",
+    "description": "Phân tích chuyên sâu về hệ thống tính toán hiệu năng cao, kiến trúc nơ-ron, và hạ tầng trí tuệ nhân tạo hiện đại.",
+    "featured": "NỔI BẬT",
+    "readArchive": "ĐỌC BÀI VIẾT",
+    "searchTitle": "Thiết bị Tìm kiếm",
+    "searchPlaceholder": "TRUY_VẤN_HỆ_THỐNG...",
+    "subscribeTitle": "Gia nhập Mạng lưới Nơ-ron",
+    "subscribeBtn": "ĐĂNG KÝ NHẬN NHẬT KÝ",
+    "minRead": "{minutes} PHÚT ĐỌC",
+    "categories": {
+      "all": "MỌI_HỆ_THỐNG",
+      "llm": "LLM_OPS",
+      "cv": "THỊ_GIÁC_MÁY",
+      "scale": "MỞ_RỘNG"
+    },
+    "emptyState": "Không tìm thấy hồ sơ chẩn đoán nào trong cơ sở dữ liệu."
   }
 }
