@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { submitContactForm } from '@/app/actions/contact';
+import { MdCheckCircle, MdArrowForward, MdAutorenew } from 'react-icons/md';
 
 export default function ContactForm() {
   const t = useTranslations('ContactPage.form');
@@ -31,7 +32,7 @@ export default function ContactForm() {
     return (
       <div className="flex flex-col items-center justify-center text-center p-10 h-full min-h-[400px] animate-in fade-in duration-500">
         <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6">
-          <span className="material-symbols-outlined text-primary text-3xl">check_circle</span>
+          <MdCheckCircle className="text-primary text-4xl" />
         </div>
         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 font-mono uppercase tracking-widest">{t('success.title')}</h3>
         <p className="text-slate-500 mb-8 max-w-sm">{t('success.description')}</p>
@@ -108,8 +109,8 @@ export default function ContactForm() {
         type="submit"
       >
         <span>{isSubmitting ? t('submitButtonSubmitting') : t('submitButton')}</span>
-        {!isSubmitting && <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_right_alt</span>}
-        {isSubmitting && <span className="material-symbols-outlined animate-spin">refresh</span>}
+        {!isSubmitting && <MdArrowForward className="transition-transform group-hover:translate-x-1 text-xl" />}
+        {isSubmitting && <MdAutorenew className="animate-spin text-xl" />}
       </button>
       <p className="text-center text-xs text-slate-500 font-mono">
         {t('responseTimePrefix')}<span className="text-accent-teal">{t('responseTimeValue')}</span>

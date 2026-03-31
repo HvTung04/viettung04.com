@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import { getTranslations } from 'next-intl/server';
+import { MdMail, MdCode, MdLink, MdLocationOn } from 'react-icons/md';
 
 export default async function ContactPage() {
   const t = await getTranslations('ContactPage');
@@ -27,7 +28,7 @@ export default async function ContactPage() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8">
               <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex items-start gap-4 transition-transform hover:-translate-y-1">
-                <span className="material-symbols-outlined text-primary">mail</span>
+                <MdMail className="text-primary text-2xl mt-0.5" />
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('emailLabel')}</p>
                   <a className="font-medium hover:text-primary transition-colors" href="mailto:hello@aiengineer.dev">
@@ -36,7 +37,7 @@ export default async function ContactPage() {
                 </div>
               </div>
               <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex items-start gap-4 transition-transform hover:-translate-y-1">
-                <span className="material-symbols-outlined text-primary">code</span>
+                <MdCode className="text-primary text-2xl mt-0.5" />
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('githubLabel')}</p>
                   <a className="font-medium hover:text-primary transition-colors" href="https://github.com/aiexpert" target="_blank" rel="noopener noreferrer">
@@ -45,7 +46,7 @@ export default async function ContactPage() {
                 </div>
               </div>
               <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex items-start gap-4 transition-transform hover:-translate-y-1">
-                <span className="material-symbols-outlined text-primary">link</span>
+                <MdLink className="text-primary text-2xl mt-0.5" />
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('linkedinLabel')}</p>
                   <a className="font-medium hover:text-primary transition-colors" href="https://linkedin.com/in/aiprofessional" target="_blank" rel="noopener noreferrer">
@@ -54,13 +55,13 @@ export default async function ContactPage() {
                 </div>
               </div>
               <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex items-start gap-4 transition-transform hover:-translate-y-1">
-                <span className="material-symbols-outlined text-primary">location_on</span>
+                <MdLocationOn className="text-primary text-2xl mt-0.5" />
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('locationLabel')}</p>
                   <span className="font-medium">{t('locationValue')}</span>
                 </div>
               </div>
-            </div>
+              </div>
           </div>
           
           <div className="flex-1 animate-in fade-in slide-in-from-right-4 duration-700 delay-150 fill-mode-both">
