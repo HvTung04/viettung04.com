@@ -202,10 +202,22 @@
       "results": {
         "title": "Key Results & Impact",
         "items": [
-          { "value": "12ms", "label": "Inference Time" },
-          { "value": "98.4%", "label": "Precision Rate" },
-          { "value": "16", "label": "Parallel Streams" },
-          { "value": "40%", "label": "Latency Reduction" }
+          {
+            "value": "12ms",
+            "label": "Inference Time"
+          },
+          {
+            "value": "98.4%",
+            "label": "Precision Rate"
+          },
+          {
+            "value": "16",
+            "label": "Parallel Streams"
+          },
+          {
+            "value": "40%",
+            "label": "Latency Reduction"
+          }
         ]
       },
       "footer": {
@@ -356,5 +368,81 @@
     "latency": "LATENCY",
     "memory": "MEMORY",
     "logPrefix": "Technical Log //"
+  },
+  "ServicesPage": {
+    "hero": {
+      "subtitle": "Engineered Intelligence",
+      "titlePart1": "Strategic AI ",
+      "titleHighlight": "Solutions",
+      "description": "Architecting high-performance, production-ready intelligent systems. We transform complex data landscapes into sovereign neural architectures that drive autonomous growth."
+    },
+    "grid": {
+      "service1": {
+        "title": "AI System Development",
+        "description": "End-to-end engineering of custom Machine Learning models. From data synthesis to cloud-native deployment, we build robust backends that scale with your enterprise demands.",
+        "tags": [
+          "PYTORCH",
+          "TENSORFLOW",
+          "AWS SAGE_MAKER"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service2": {
+        "title": "Computer Vision Solutions",
+        "description": "Advanced visual automation for industrial inspection and security. Implementation of YOLOv8 for real-time object detection and anomaly recognition in complex environments.",
+        "tags": [
+          "OPENCV",
+          "YOLO_V8",
+          "CUDA"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service3": {
+        "title": "AI Consulting",
+        "description": "High-level architecture design and feasibility analysis. We bridge the gap between business objectives and technical implementation, ensuring ROI on AI investment.",
+        "tags": [
+          "STRATEGY",
+          "ROI_MODELS",
+          "COMPUTATIONAL_DESIGN"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service4": {
+        "title": "Data Automation",
+        "description": "Automated data extraction and transformation pipelines. We build intelligent bridges between fragmented data sources to fuel your AI engines with high-fidelity inputs.",
+        "tags": [
+          "APACHE_AIRFLOW",
+          "SNOWFLAKE",
+          "DOCKER"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      }
+    },
+    "process": {
+      "methodology": "Methodology",
+      "titlePart1": "The Neural ",
+      "titleHighlight": "Pipeline",
+      "step1": {
+        "number": "01",
+        "title": "Analysis",
+        "description": "Deep-dive into existing data infrastructure and performance bottlenecks. We define success metrics and technical constraints before the first line of code."
+      },
+      "step2": {
+        "number": "02",
+        "title": "Engineering",
+        "description": "Iterative development using state-of-the-art architectures. We focus on low-latency inference and high-accuracy output through modular design."
+      },
+      "step3": {
+        "number": "03",
+        "title": "Deployment",
+        "description": "Seamless integration into your production environment with continuous monitoring and automated retraining loops to maintain performance peak."
+      }
+    },
+    "cta": {
+      "titleLine1": "Ready to build",
+      "titleLine2": "the future?",
+      "description": "Let's discuss how customized AI can transform your operations. Our team is ready to architect your next competitive advantage.",
+      "button": "Start a Project"
+    }
   }
 }
