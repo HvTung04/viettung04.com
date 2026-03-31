@@ -235,5 +235,35 @@
       "subtitle": "Let's discuss how AI can accelerate your business.",
       "copyright": "© 2024 AI Engineer Portfolio. All rights reserved."
     }
+  },
+  "ContactPage": {
+    "available": "Available for New Projects",
+    "titlePart1": "Let's Build Something ",
+    "titleHighlight": "Together",
+    "description": "Have a vision for a breakthrough AI solution? Whether it's LLM fine-tuning, computer vision, or predictive analytics, let's discuss how we can turn your data into intelligence.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "locationLabel": "Based In",
+    "locationValue": "San Francisco, CA",
+    "form": {
+      "nameLabel": "Full Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@company.com",
+      "budgetLabel": "Estimated Budget",
+      "budgetOptionDisabled": "Select a range",
+      "descLabel": "Project Description",
+      "descPlaceholder": "Tell me about your AI needs, goals, and technical requirements...",
+      "submitButton": "Initialize Project Talk",
+      "submitButtonSubmitting": "Initializing...",
+      "responseTimePrefix": "Typical response time: ",
+      "responseTimeValue": "< 24 hours",
+      "success": {
+        "title": "Data stream established",
+        "description": "Your message has been securely transmitted. I will review your requirements and follow up shortly.",
+        "resetButton": "Send Another Message"
+      }
+    }
   }
 }

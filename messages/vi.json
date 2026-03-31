@@ -235,5 +235,35 @@
       "subtitle": "Hãy thảo luận về cách AI có thể tăng tốc doanh nghiệp của bạn.",
       "copyright": "© 2024 AI Engineer Portfolio. Bảo lưu mọi quyền."
     }
+  },
+  "ContactPage": {
+    "available": "Sẵn sàng cho Dự án Mới",
+    "titlePart1": "Hãy Cùng Xây Dựng ",
+    "titleHighlight": "Tương Lai",
+    "description": "Bạn có tầm nhìn cho một giải pháp AI đột phá? Dù là tinh chỉnh LLM, thị giác máy tính, hay phân tích dự đoán, hãy cùng thảo luận cách biến dữ liệu thành trí tuệ.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "locationLabel": "Vị trí",
+    "locationValue": "San Francisco, CA",
+    "form": {
+      "nameLabel": "Họ và Tên",
+      "namePlaceholder": "Nguyễn Văn A",
+      "emailLabel": "Địa chỉ Email",
+      "emailPlaceholder": "nguyenvana@company.com",
+      "budgetLabel": "Ngân sách Dự kiến",
+      "budgetOptionDisabled": "Chọn một mức",
+      "descLabel": "Mô tả Dự án",
+      "descPlaceholder": "Hãy cho tôi biết nhu cầu, mục tiêu AI và yêu cầu kỹ thuật của bạn...",
+      "submitButton": "Khởi tạo Cuộc gọi Định hướng",
+      "submitButtonSubmitting": "Đang khởi tạo...",
+      "responseTimePrefix": "Thời gian phản hồi thông thường: ",
+      "responseTimeValue": "< 24 giờ",
+      "success": {
+        "title": "Luồng dữ liệu đã được thiết lập",
+        "description": "Tin nhắn của bạn đã được truyền an toàn. Tôi sẽ xem xét các yêu cầu của bạn và theo dõi sớm nhất.",
+        "resetButton": "Gửi Thêm Một Tin Nhắn Khác"
+      }
+    }
   }
 }
