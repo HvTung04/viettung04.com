@@ -24,14 +24,14 @@ export default function Navbar() {
             <Link href="/#services" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('services')}</Link>
             <Link href="/#about" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('about')}</Link>
             <Link href="/#blog" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('blog')}</Link>
-            <Link href="/#contact" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{t('contact')}</Link>
+            <Link href="/contact" className={`text-sm transition-colors ${pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'font-medium hover:text-primary text-slate-600 dark:text-slate-400'}`}>{t('contact')}</Link>
           </div>
           <div className="flex items-center gap-3 md:gap-4">
             <ThemeToggle />
             <LanguageSwitcher />
-            <button className="bg-primary hover:bg-primary/90 text-white px-4 md:px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-md shadow-primary/20 hover:shadow-primary/40 active:scale-95">
+            <Link href="/contact" className="bg-primary hover:bg-primary/90 text-white px-4 md:px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-md shadow-primary/20 hover:shadow-primary/40 active:scale-95 block text-center">
               {t('hireMe')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

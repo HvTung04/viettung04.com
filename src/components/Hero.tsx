@@ -27,7 +27,7 @@ export default function Hero() {
               <Link href="#projects" className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-base transition-all flex items-center gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1">
                 {t('viewProjects')} <MdArrowForward className="text-xl" />
               </Link>
-              <Link href="#contact" className="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-black/5 hover:-translate-y-1">
+              <Link href="/contact" className="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 px-8 py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-black/5 hover:-translate-y-1">
                 {t('contactMe')}
               </Link>
             </div>

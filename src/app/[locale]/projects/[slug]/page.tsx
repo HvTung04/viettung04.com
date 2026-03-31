@@ -170,9 +170,9 @@ export default async function ProjectDetailPage({
             <p className="text-slate-400">{t('footer.subtitle')}</p>
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="mailto:contact@example.com" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="Email">
+            <Link href="/contact" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="Email">
               <MdMail className="text-xl" />
-            </a>
+            </Link>
             <a href="/#about" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="About">
               <MdPerson className="text-xl" />
             </a>

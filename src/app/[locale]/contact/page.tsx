@@ -61,11 +61,6 @@ export default async function ContactPage() {
                 </div>
               </div>
             </div>
-            
-            <div className="relative rounded-2xl overflow-hidden h-48 border border-slate-200 dark:border-slate-800 delay-150 animate-in fade-in fill-mode-both">
-              <div className="absolute inset-0 bg-slate-200 dark:bg-slate-900 bg-center bg-no-repeat bg-cover grayscale opacity-50" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCXCyFlRPghUDxkhvEbef6U2HlQQPuBi89d3VjxuumkkSoRTFYI24oHIpQNPrvG14pZ75y1ECCDDofQ1ytsBQdm5D1Iim1LgcerK2HEeS_v8Q8rmII12PVqrsJhtSbyXCY91salOUYlIoDhKI20_i5JjMz7kTzKjWu9EXiaZooRAlEoFLyT-43wUgaQeii93xBYPH56LR1p9tlfeyXTdF0h9JMk7joZZ4-3nk6VJiKSa8W38tX3XeDg6xiM_nDCA9RVnc7PuV2v-UHF')" }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background-light/80 dark:from-background-dark/80 to-transparent"></div>
-            </div>
           </div>
           
           <div className="flex-1 animate-in fade-in slide-in-from-right-4 duration-700 delay-150 fill-mode-both">
