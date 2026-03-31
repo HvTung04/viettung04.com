@@ -31,8 +31,8 @@ export default async function ContactPage() {
                 <MdMail className="text-primary text-2xl mt-0.5" />
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('emailLabel')}</p>
-                  <a className="font-medium hover:text-primary transition-colors" href="mailto:hello@aiengineer.dev">
-                    hello@aiengineer.dev
+                  <a className="font-medium hover:text-primary transition-colors" href="mailto:vtung121004@gmail.com">
+                    vtung121004@gmail.com
                   </a>
                 </div>
               </div>
@@ -41,7 +41,7 @@ export default async function ContactPage() {
                 <div>
                   <p className="font-mono text-xs uppercase text-slate-500 mb-1">{t('githubLabel')}</p>
                   <a className="font-medium hover:text-primary transition-colors" href="https://github.com/aiexpert" target="_blank" rel="noopener noreferrer">
-                    github.com/aiexpert
+                    github.com/HvTung04
                   </a>
                 </div>
               </div>
