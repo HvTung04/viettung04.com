@@ -443,6 +443,21 @@
       "titleLine2": "the future?",
       "description": "Let's discuss how customized AI can transform your operations. Our team is ready to architect your next competitive advantage.",
       "button": "Start a Project"
+    },
+    "modal": {
+      "relatedProjects": "Related Projects",
+      "bookFormTitle": "Book This Service",
+      "nameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "projectNameLabel": "Project Name",
+      "budgetLabel": "Estimated Budget",
+      "timeframeLabel": "Project Timeframe",
+      "descriptionLabel": "Project Details & Requirements",
+      "cancel": "Cancel",
+      "submit": "Submit Booking Request",
+      "submitting": "Submitting...",
+      "success": "Booking request sent successfully!",
+      "error": "Failed to send request. Please try again."
     }
   }
 }

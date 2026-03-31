@@ -443,6 +443,21 @@
       "titleLine2": "tương lai?",
       "description": "Hãy thảo luận về cách công nghệ AI tuỳ chỉnh có thể làm thay đổi hoàn toàn hệ thống thực thi của bạn. Nhóm của chúng tôi luôn sẵn sàng cho bước tiến tiếp theo của bạn.",
       "button": "Bắt đầu Dự án"
+    },
+    "modal": {
+      "relatedProjects": "Dự Án Liên Quan",
+      "bookFormTitle": "Đặt Dịch Vụ Này",
+      "nameLabel": "Tên Của Bạn",
+      "emailLabel": "Địa Chỉ Email",
+      "projectNameLabel": "Tên Dự Án",
+      "budgetLabel": "Ngân Sách Dự Kiến",
+      "timeframeLabel": "Khung Thời Gian",
+      "descriptionLabel": "Chi Tiết & Yêu Cầu Dự Án",
+      "cancel": "Hủy",
+      "submit": "Gửi Yêu Cầu Đặt Lịch",
+      "submitting": "Đang gửi...",
+      "success": "Đã gửi yêu cầu đặt lịch thành công!",
+      "error": "Gửi yêu cầu thất bại. Vui lòng thử lại."
     }
   }
 }
