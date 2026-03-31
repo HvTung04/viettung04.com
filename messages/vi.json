@@ -283,5 +283,25 @@
       "scale": "MỞ_RỘNG"
     },
     "emptyState": "Không tìm thấy hồ sơ chẩn đoán nào trong cơ sở dữ liệu."
+  },
+  "BlogDetail": {
+    "systemMap": "Bản đồ Hệ thống",
+    "author": "Tác giả",
+    "duration": "Thời lượng",
+    "architecture": "Kiến trúc",
+    "hwSpec": "NVIDIA L40S / CUDA 12.2",
+    "minRead": "{minutes} phút đọc",
+    "continuousLearning": "Học tập không ngừng",
+    "subscribeTitle": "Bạn thấy hữu ích?",
+    "subscribeDesc": "Đăng ký nhận nhật ký kỹ thuật để theo dõi thông tin chuyên sâu hàng tuần về kỹ thuật AI, CUDA và hệ thống phân tán.",
+    "subscribeBtn": "Đăng ký",
+    "subscribePlaceholder": "kysu@lab.com",
+    "returnArchive": "Trở về Lưu trữ",
+    "modelStats": "Chỉ số Mô hình",
+    "views": "LƯỢT XEM",
+    "readingDepth": "ĐỘ SÂU ĐỌC",
+    "latency": "ĐỘ TRỄ",
+    "memory": "BỘ NHỚ",
+    "logPrefix": "Nhật ký Kỹ thuật //"
   }
 }

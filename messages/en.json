@@ -283,5 +283,25 @@
       "scale": "SCALABILITY"
     },
     "emptyState": "No diagnostic records found in the database."
+  },
+  "BlogDetail": {
+    "systemMap": "System Map",
+    "author": "Author",
+    "duration": "Duration",
+    "architecture": "Architecture",
+    "hwSpec": "NVIDIA L40S / CUDA 12.2",
+    "minRead": "{minutes} min read",
+    "continuousLearning": "Continuous Learning",
+    "subscribeTitle": "Found this useful?",
+    "subscribeDesc": "Subscribe to technical logs for bi-weekly deep dives into AI engineering, CUDA, and distributed systems.",
+    "subscribeBtn": "Subscribe",
+    "subscribePlaceholder": "engineer@lab.com",
+    "returnArchive": "Return to Archive",
+    "modelStats": "Model Stats",
+    "views": "VIEWS",
+    "readingDepth": "READ DEPTH",
+    "latency": "LATENCY",
+    "memory": "MEMORY",
+    "logPrefix": "Technical Log //"
   }
 }
