@@ -173,9 +173,9 @@ export default async function ProjectDetailPage({
             <Link href="/contact" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="Email">
               <MdMail className="text-xl" />
             </Link>
-            <a href="/#about" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="About">
+            <Link href="/about" className="p-3 bg-slate-800 rounded-full hover:bg-primary transition-colors text-white" aria-label="About">
               <MdPerson className="text-xl" />
-            </a>
+            </Link>
             <Link href="/projects" className="bg-primary px-8 py-3 rounded-xl font-bold text-white hover:shadow-[0_0_20px_rgba(60,131,246,0.4)] transition-all">
               {t('allProjects')}
             </Link>

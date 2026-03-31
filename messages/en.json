@@ -266,6 +266,59 @@
       }
     }
   },
+  "AboutPage": {
+    "availableBadge": "Available for complex ML challenges",
+    "titlePart1": "Engineering intelligence",
+    "titleHighlight": "at the intersection of",
+    "titlePart2": "scale and ethics.",
+    "description": "I am a Senior AI Engineer specializing in large-scale machine learning systems. With nearly a decade of experience, I transition cutting-edge research into production environments, focusing on LLM orchestration, computer vision, and high-throughput data pipelines.",
+    "viewProjects": "Projects",
+    "contactBtn": "Contact",
+    "philosophy": {
+      "title": "Core Philosophy",
+      "data": {
+        "title": "Data-First Approach",
+        "desc": "Models are only as good as the data they ingest. I prioritize robust ETL pipelines and high-quality synthetic data generation before hyperparameter tuning."
+      },
+      "scale": {
+        "title": "Scalable Architecture",
+        "desc": "Building for millions, not just local notebooks. My focus is on containerized deployments, low-latency inference, and auto-scaling GPU clusters."
+      },
+      "ethics": {
+        "title": "Ethical AI",
+        "desc": "Bias detection and mitigation are features, not afterthoughts. I design systems that are transparent, interpretable, and socially responsible."
+      }
+    },
+    "timeline": {
+      "title": "Career Journey",
+      "senior": {
+        "role": "Senior AI Engineer",
+        "period": "2021 - PRESENT",
+        "company": "TechCorp Global Systems",
+        "point1": "Leading development of proprietary LLM fine-tuning pipelines reducing inference cost by 40%.",
+        "point2": "Architecting distributed training clusters on AWS/GCP for multi-modal models."
+      },
+      "research": {
+        "role": "ML Research Lead",
+        "period": "2018 - 2021",
+        "company": "AI Vision Labs",
+        "point1": "Published 4 papers on efficient neural architecture search (NAS) in CVPR/ICML.",
+        "point2": "Mentored a team of 6 research engineers in deploying real-time object detection systems."
+      },
+      "data": {
+        "role": "Data Scientist",
+        "period": "2016 - 2018",
+        "company": "DataFlow Analytics",
+        "point1": "Focused on predictive maintenance algorithms for industrial IoT and time-series forecasting at scale."
+      }
+    },
+    "skills": {
+      "title": "Technical Arsenal",
+      "coreTitle": "Core AI / ML",
+      "opsTitle": "Ops & Cloud",
+      "languagesTitle": "Languages"
+    }
+  },
   "BlogList": {
     "title": "Technical Insights",
     "description": "Deep dives into high-performance computing, neural architectures, and the infrastructure of modern intelligence.",

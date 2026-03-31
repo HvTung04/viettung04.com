@@ -266,6 +266,59 @@
       }
     }
   },
+  "AboutPage": {
+    "availableBadge": "Sẵn sàng cho các bài toán ML phức tạp",
+    "titlePart1": "Kiến tạo trí tuệ",
+    "titleHighlight": "tại giao điểm của",
+    "titlePart2": "quy mô và đạo đức.",
+    "description": "Tôi là Kỹ sư AI cao cấp, chuyên về các hệ thống machine learning quy mô lớn. Với gần một thập kỷ kinh nghiệm, tôi chuyển hóa nghiên cứu tiên tiến thành môi trường production, tập trung vào điều phối LLM, thị giác máy tính và pipeline dữ liệu thông lượng cao.",
+    "viewProjects": "Dự án",
+    "contactBtn": "Liên hệ",
+    "philosophy": {
+      "title": "Triết lý Cốt lõi",
+      "data": {
+        "title": "Cách tiếp cận Data-First",
+        "desc": "Mô hình chỉ tốt khi dữ liệu đầu vào đủ tốt. Tôi ưu tiên pipeline ETL vững chắc và tạo dữ liệu tổng hợp chất lượng cao trước khi tinh chỉnh siêu tham số."
+      },
+      "scale": {
+        "title": "Kiến trúc Có thể mở rộng",
+        "desc": "Xây dựng cho hàng triệu người dùng, không chỉ notebook cục bộ. Trọng tâm của tôi là triển khai container, suy luận độ trễ thấp và cụm GPU tự động mở rộng."
+      },
+      "ethics": {
+        "title": "AI Có đạo đức",
+        "desc": "Phát hiện và giảm thiểu thiên lệch là tính năng bắt buộc, không phải phần thêm sau. Tôi thiết kế hệ thống minh bạch, có thể diễn giải và có trách nhiệm xã hội."
+      }
+    },
+    "timeline": {
+      "title": "Hành trình Sự nghiệp",
+      "senior": {
+        "role": "Kỹ sư AI Cao cấp",
+        "period": "2021 - HIỆN TẠI",
+        "company": "TechCorp Global Systems",
+        "point1": "Dẫn dắt phát triển pipeline fine-tuning LLM độc quyền, giảm 40% chi phí suy luận.",
+        "point2": "Thiết kế cụm huấn luyện phân tán trên AWS/GCP cho mô hình đa phương thức."
+      },
+      "research": {
+        "role": "Trưởng nhóm Nghiên cứu ML",
+        "period": "2018 - 2021",
+        "company": "AI Vision Labs",
+        "point1": "Công bố 4 bài báo về tìm kiếm kiến trúc nơ-ron hiệu quả (NAS) tại CVPR/ICML.",
+        "point2": "Mentor nhóm 6 kỹ sư nghiên cứu triển khai hệ thống phát hiện đối tượng thời gian thực."
+      },
+      "data": {
+        "role": "Nhà Khoa học Dữ liệu",
+        "period": "2016 - 2018",
+        "company": "DataFlow Analytics",
+        "point1": "Tập trung vào thuật toán bảo trì dự đoán cho IoT công nghiệp và dự báo chuỗi thời gian ở quy mô lớn."
+      }
+    },
+    "skills": {
+      "title": "Kho Vũ khí Kỹ thuật",
+      "coreTitle": "AI / ML Cốt lõi",
+      "opsTitle": "Ops & Cloud",
+      "languagesTitle": "Ngôn ngữ"
+    }
+  },
   "BlogList": {
     "title": "Góc Nhìn Kỹ Thuật",
     "description": "Phân tích chuyên sâu về hệ thống tính toán hiệu năng cao, kiến trúc nơ-ron, và hạ tầng trí tuệ nhân tạo hiện đại.",
