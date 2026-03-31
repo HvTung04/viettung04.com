@@ -141,3 +141,78 @@ export async function deleteProject(id: string) {
   revalidatePath('/admin/projects');
   revalidatePath('/projects');
 }
+
+export async function createBlog(formData: FormData) {
+  const title = formData.get('title') as string;
+  const slug = formData.get('slug') as string;
+  const description = formData.get('description') as string;
+  const category = formData.get('category') as string;
+  const visibility = formData.get('visibility') as string;
+  const status = formData.get('status') as string;
+  const content = formData.get('content') as string;
+  const imageUrl = formData.get('imageUrl') as string;
+
+  const createData: any = {
+    slug,
+    category,
+    visibility,
+    status: status || 'DRAFT',
+    imageUrl,
+    translations: {
+      create: [{ locale: 'en', title, description, content }],
+    },
+  };
+
+  await prisma.blog.create({
+    data: createData,
+  });
+
+  revalidatePath('/admin/blogs');
+  revalidatePath('/blog');
+  redirect('/admin/blogs');
+}
+
+export async function updateBlog(id: string, formData: FormData) {
+  const title = formData.get('title') as string;
+  const slug = formData.get('slug') as string;
+  const description = formData.get('description') as string;
+  const category = formData.get('category') as string;
+  const visibility = formData.get('visibility') as string;
+  const status = formData.get('status') as string;
+  const content = formData.get('content') as string;
+  const imageUrl = formData.get('imageUrl') as string;
+
+  await prisma.blog.update({
+    where: { id },
+    data: {
+      slug,
+      category,
+      visibility,
+      status: status || 'DRAFT',
+      imageUrl,
+    },
+  });
+
+  await prisma.blogTranslation.upsert({
+    where: {
+      blogId_locale: {
+        blogId: id,
+        locale: 'en',
+      },
+    },
+    update: { title, description, content },
+    create: { blogId: id, locale: 'en', title, description, content },
+  });
+
+  revalidatePath('/admin/blogs');
+  revalidatePath('/blog');
+  revalidatePath(`/blog/${slug}`);
+}
+
+export async function deleteBlog(id: string) {
+  await prisma.blog.delete({
+    where: { id },
+  });
+  revalidatePath('/admin/blogs');
+  revalidatePath('/blog');
+}

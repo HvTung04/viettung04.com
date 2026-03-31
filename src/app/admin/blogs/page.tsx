@@ -5,6 +5,7 @@ import {
   MdToken, MdMemory, MdVisibility, MdEditNote, MdDeleteSweep,
   MdArrowBack, MdArrowForward
 } from 'react-icons/md';
+import { deleteBlog } from '@/app/admin/actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -144,15 +145,17 @@ export default async function AdminBlogList() {
                       </td>
                       <td className="px-6 py-5 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <button className="p-2 text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 rounded-lg transition-all" title="View">
+                          <Link href={`/blog/${b.slug}`} target="_blank" className="p-2 text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 rounded-lg transition-all" title="View">
                             <MdVisibility className="text-lg" />
-                          </button>
-                          <button className="p-2 text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 rounded-lg transition-all" title="Edit">
+                          </Link>
+                          <Link href={`/admin/blogs/${b.id}`} className="p-2 text-slate-500 hover:text-blue-400 hover:bg-blue-400/10 rounded-lg transition-all" title="Edit">
                             <MdEditNote className="text-lg" />
-                          </button>
-                          <button className="p-2 text-slate-500 hover:text-error hover:bg-error/10 rounded-lg transition-all" title="Delete">
-                            <MdDeleteSweep className="text-lg" />
-                          </button>
+                          </Link>
+                          <form action={deleteBlog.bind(null, b.id)}>
+                            <button type="submit" className="p-2 text-slate-500 hover:text-error hover:bg-error/10 rounded-lg transition-all" title="Delete">
+                              <MdDeleteSweep className="text-lg" />
+                            </button>
+                          </form>
                         </div>
                       </td>
                     </tr>

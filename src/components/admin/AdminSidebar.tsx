@@ -19,6 +19,13 @@ export default function AdminSidebar() {
           <h1 className="text-xl font-black tracking-tighter text-blue-500 uppercase">Neural Cobalt</h1>
           <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500 mt-1">Technical Admin</p>
         </div>
+
+        <div className="px-6 mb-8">
+          <Link href={pathname.includes('/admin/blogs') ? '/admin/blogs/new' : '/admin/projects/new'} className="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <span className="material-symbols-outlined text-lg">add_circle</span>
+            <span>New Entry</span>
+          </Link>
+        </div>
         
         <nav className="flex-1 space-y-1">
           {navItems.map((item) => {
