@@ -18,7 +18,7 @@ export default function Footer() {
             <a className="hover:text-primary transition-colors" href="#">LinkedIn</a>
             <a className="hover:text-primary transition-colors" href="#">GitHub</a>
             <a className="hover:text-primary transition-colors" href="#">Twitter</a>
-            <a className="hover:text-primary transition-colors" href="#">Email</a>
+            <Link className="hover:text-primary transition-colors" href="/contact">Email</Link>
           </div>
           <p className="text-xs text-slate-400 dark:text-slate-500">{tFooter('rights')}</p>
         </div>

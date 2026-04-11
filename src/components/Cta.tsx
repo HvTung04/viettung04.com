@@ -1,4 +1,5 @@
 import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/routing';
 
 export default function Cta() {
   const t = useTranslations('Cta');
@@ -17,9 +18,9 @@ export default function Cta() {
               {t('subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-white text-primary hover:bg-slate-100 px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-95 duration-300">
+              <Link href="/contact" className="bg-white text-primary hover:bg-slate-100 px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-95 duration-300 inline-block">
                 {t('button')}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

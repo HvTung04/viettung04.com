@@ -202,10 +202,22 @@
       "results": {
         "title": "Kết quả & Tác động",
         "items": [
-          { "value": "12ms", "label": "Thời gian Suy luận" },
-          { "value": "98.4%", "label": "Độ chính xác" },
-          { "value": "16", "label": "Luồng Song song" },
-          { "value": "40%", "label": "Giảm Độ trễ" }
+          {
+            "value": "12ms",
+            "label": "Thời gian Suy luận"
+          },
+          {
+            "value": "98.4%",
+            "label": "Độ chính xác"
+          },
+          {
+            "value": "16",
+            "label": "Luồng Song song"
+          },
+          {
+            "value": "40%",
+            "label": "Giảm Độ trễ"
+          }
         ]
       },
       "footer": {
@@ -214,6 +226,238 @@
         "contact": "Liên hệ ngay",
         "copyright": "© 2024 DỰ_ÁN_ĐỘNG_CƠ_NƠ_RON"
       }
+    }
+  },
+  "ProjectDetailPage": {
+    "nav": {
+      "overview": "Tổng quan",
+      "techStack": "Công nghệ",
+      "results": "Kết quả"
+    },
+    "allProjects": "Tất cả dự án",
+    "liveDemo": "Demo trực tiếp",
+    "github": "GitHub",
+    "systemActive": "HỆ THỐNG HOẠT ĐỘNG",
+    "sections": {
+      "techStack": "Công nghệ sử dụng",
+      "results": "Kết quả hiệu năng"
+    },
+    "footer": {
+      "title": "Muốn cùng hợp tác?",
+      "subtitle": "Hãy thảo luận về cách AI có thể tăng tốc doanh nghiệp của bạn.",
+      "copyright": "© 2024 AI Engineer Portfolio. Bảo lưu mọi quyền."
+    }
+  },
+  "ContactPage": {
+    "available": "Sẵn sàng cho Dự án Mới",
+    "titlePart1": "Hãy Cùng Xây Dựng ",
+    "titleHighlight": "Tương Lai",
+    "description": "Bạn có tầm nhìn cho một giải pháp AI đột phá? Dù là tinh chỉnh LLM, thị giác máy tính, hay phân tích dự đoán, hãy cùng thảo luận cách biến dữ liệu thành trí tuệ.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "locationLabel": "Vị trí",
+    "locationValue": "Hải Phòng, Việt Nam",
+    "form": {
+      "nameLabel": "Họ và Tên",
+      "namePlaceholder": "Nguyễn Văn A",
+      "emailLabel": "Địa chỉ Email",
+      "emailPlaceholder": "nguyenvana@company.com",
+      "budgetLabel": "Ngân sách Dự kiến",
+      "budgetOptionDisabled": "Chọn một mức",
+      "descLabel": "Mô tả Dự án",
+      "descPlaceholder": "Hãy cho tôi biết nhu cầu, mục tiêu AI và yêu cầu kỹ thuật của bạn...",
+      "submitButton": "Khởi tạo Cuộc gọi Định hướng",
+      "submitButtonSubmitting": "Đang khởi tạo...",
+      "responseTimePrefix": "Thời gian phản hồi thông thường: ",
+      "responseTimeValue": "< 24 giờ",
+      "success": {
+        "title": "Luồng dữ liệu đã được thiết lập",
+        "description": "Tin nhắn của bạn đã được truyền an toàn. Tôi sẽ xem xét các yêu cầu của bạn và theo dõi sớm nhất.",
+        "resetButton": "Gửi Thêm Một Tin Nhắn Khác"
+      }
+    }
+  },
+  "AboutPage": {
+    "availableBadge": "Sẵn sàng cho các bài toán ML phức tạp",
+    "titlePart1": "Kiến tạo trí tuệ",
+    "titleHighlight": "tại giao điểm của",
+    "titlePart2": "quy mô và đạo đức.",
+    "description": "Tôi là Kỹ sư AI cao cấp, chuyên về các hệ thống machine learning quy mô lớn. Với gần một thập kỷ kinh nghiệm, tôi chuyển hóa nghiên cứu tiên tiến thành môi trường production, tập trung vào điều phối LLM, thị giác máy tính và pipeline dữ liệu thông lượng cao.",
+    "viewProjects": "Dự án",
+    "contactBtn": "Liên hệ",
+    "philosophy": {
+      "title": "Triết lý Cốt lõi",
+      "data": {
+        "title": "Cách tiếp cận Data-First",
+        "desc": "Mô hình chỉ tốt khi dữ liệu đầu vào đủ tốt. Tôi ưu tiên pipeline ETL vững chắc và tạo dữ liệu tổng hợp chất lượng cao trước khi tinh chỉnh siêu tham số."
+      },
+      "scale": {
+        "title": "Kiến trúc Có thể mở rộng",
+        "desc": "Xây dựng cho hàng triệu người dùng, không chỉ notebook cục bộ. Trọng tâm của tôi là triển khai container, suy luận độ trễ thấp và cụm GPU tự động mở rộng."
+      },
+      "ethics": {
+        "title": "AI Có đạo đức",
+        "desc": "Phát hiện và giảm thiểu thiên lệch là tính năng bắt buộc, không phải phần thêm sau. Tôi thiết kế hệ thống minh bạch, có thể diễn giải và có trách nhiệm xã hội."
+      }
+    },
+    "timeline": {
+      "title": "Hành trình Sự nghiệp",
+      "senior": {
+        "role": "Kỹ sư AI Cao cấp",
+        "period": "2021 - HIỆN TẠI",
+        "company": "TechCorp Global Systems",
+        "point1": "Dẫn dắt phát triển pipeline fine-tuning LLM độc quyền, giảm 40% chi phí suy luận.",
+        "point2": "Thiết kế cụm huấn luyện phân tán trên AWS/GCP cho mô hình đa phương thức."
+      },
+      "research": {
+        "role": "Trưởng nhóm Nghiên cứu ML",
+        "period": "2018 - 2021",
+        "company": "AI Vision Labs",
+        "point1": "Công bố 4 bài báo về tìm kiếm kiến trúc nơ-ron hiệu quả (NAS) tại CVPR/ICML.",
+        "point2": "Mentor nhóm 6 kỹ sư nghiên cứu triển khai hệ thống phát hiện đối tượng thời gian thực."
+      },
+      "data": {
+        "role": "Nhà Khoa học Dữ liệu",
+        "period": "2016 - 2018",
+        "company": "DataFlow Analytics",
+        "point1": "Tập trung vào thuật toán bảo trì dự đoán cho IoT công nghiệp và dự báo chuỗi thời gian ở quy mô lớn."
+      }
+    },
+    "skills": {
+      "title": "Kho Vũ khí Kỹ thuật",
+      "coreTitle": "AI / ML Cốt lõi",
+      "opsTitle": "Ops & Cloud",
+      "languagesTitle": "Ngôn ngữ"
+    }
+  },
+  "BlogList": {
+    "title": "Góc Nhìn Kỹ Thuật",
+    "description": "Phân tích chuyên sâu về hệ thống tính toán hiệu năng cao, kiến trúc nơ-ron, và hạ tầng trí tuệ nhân tạo hiện đại.",
+    "featured": "NỔI BẬT",
+    "readArchive": "ĐỌC BÀI VIẾT",
+    "searchTitle": "Thiết bị Tìm kiếm",
+    "searchPlaceholder": "TRUY_VẤN_HỆ_THỐNG...",
+    "subscribeTitle": "Gia nhập Mạng lưới Nơ-ron",
+    "subscribeBtn": "ĐĂNG KÝ NHẬN NHẬT KÝ",
+    "minRead": "{minutes} PHÚT ĐỌC",
+    "categories": {
+      "all": "MỌI_HỆ_THỐNG",
+      "llm": "LLM_OPS",
+      "cv": "THỊ_GIÁC_MÁY",
+      "scale": "MỞ_RỘNG"
+    },
+    "emptyState": "Không tìm thấy hồ sơ chẩn đoán nào trong cơ sở dữ liệu."
+  },
+  "BlogDetail": {
+    "systemMap": "Bản đồ Hệ thống",
+    "author": "Tác giả",
+    "duration": "Thời lượng",
+    "architecture": "Kiến trúc",
+    "hwSpec": "NVIDIA L40S / CUDA 12.2",
+    "minRead": "{minutes} phút đọc",
+    "continuousLearning": "Học tập không ngừng",
+    "subscribeTitle": "Bạn thấy hữu ích?",
+    "subscribeDesc": "Đăng ký nhận nhật ký kỹ thuật để theo dõi thông tin chuyên sâu hàng tuần về kỹ thuật AI, CUDA và hệ thống phân tán.",
+    "subscribeBtn": "Đăng ký",
+    "subscribePlaceholder": "kysu@lab.com",
+    "returnArchive": "Trở về Lưu trữ",
+    "modelStats": "Chỉ số Mô hình",
+    "views": "LƯỢT XEM",
+    "readingDepth": "ĐỘ SÂU ĐỌC",
+    "latency": "ĐỘ TRỄ",
+    "memory": "BỘ NHỚ",
+    "logPrefix": "Nhật ký Kỹ thuật //"
+  },
+  "ServicesPage": {
+    "hero": {
+      "subtitle": "Trí tuệ Nhân tạo Định hướng",
+      "titlePart1": "Giải pháp AI ",
+      "titleHighlight": "Chiến lược",
+      "description": "Thiết kế các hệ thống thông minh hiệu suất cao, sẵn sàng cho môi trường thực tế. Chúng tôi chuyển đổi các luồng dữ liệu phức tạp thành các hệ thống mạng nơ-ron độc lập giúp tăng trưởng tự động."
+    },
+    "grid": {
+      "service1": {
+        "title": "Phát triển Hệ thống AI",
+        "description": "Lập trình từ đầu-đến-cuối các mô hình Học Máy tùy chỉnh. Từ việc tổng hợp dữ liệu đến triển khai trên đám mây, chúng tôi xây dựng các backend mạnh mẽ mở rộng cùng với nhu cầu doanh nghiệp của bạn.",
+        "tags": [
+          "PYTORCH",
+          "TENSORFLOW",
+          "AWS SAGE_MAKER"
+        ],
+        "cta": "TÌM HIỂU THÊM & ĐẶT LỊCH"
+      },
+      "service2": {
+        "title": "Giải pháp Thị giác Máy tính",
+        "description": "Tự động hóa trực quan tiên tiến cho kiểm tra công nghiệp và bảo mật. Triển khai YOLOv8 để phát hiện đối tượng theo thời gian thực và nhận diện bất thường trong các môi trường phức tạp.",
+        "tags": [
+          "OPENCV",
+          "YOLO_V8",
+          "CUDA"
+        ],
+        "cta": "TÌM HIỂU THÊM & ĐẶT LỊCH"
+      },
+      "service3": {
+        "title": "Tư vấn AI",
+        "description": "Phân tích khả thi và thiết kế kiến trúc cấp cao. Chúng tôi là cầu nối giữa mục tiêu kinh doanh và triển khai kỹ thuật, đảm bảo ROI (Lợi tức đầu tư) cho khoản đầu tư AI của bạn.",
+        "tags": [
+          "STRATEGY",
+          "ROI_MODELS",
+          "COMPUTATIONAL_DESIGN"
+        ],
+        "cta": "TÌM HIỂU THÊM & ĐẶT LỊCH"
+      },
+      "service4": {
+        "title": "Tự động hóa Dữ liệu",
+        "description": "Tự động hóa đường ống chuyển đổi và trích xuất dữ liệu. Chúng tôi xây dựng các cầu nối thông minh giữa các nguồn dữ liệu rời rạc để nuôi các động cơ AI của bạn bằng khối lượng dữ liệu chất lượng cao.",
+        "tags": [
+          "APACHE_AIRFLOW",
+          "SNOWFLAKE",
+          "DOCKER"
+        ],
+        "cta": "TÌM HIỂU THÊM & ĐẶT LỊCH"
+      }
+    },
+    "process": {
+      "methodology": "Phương pháp Thực hiện",
+      "titlePart1": "Quy trình ",
+      "titleHighlight": "Neural",
+      "step1": {
+        "number": "01",
+        "title": "Phân tích",
+        "description": "Đi sâu vào cơ sở hạ tầng dữ liệu hiện tại và các nút thắt hiệu suất. Chúng tôi định nghĩa các số liệu thành công và ràng buộc kỹ thuật trước khi viết dòng code đầu tiên."
+      },
+      "step2": {
+        "number": "02",
+        "title": "Kỹ thuật",
+        "description": "Phát triển lặp lặp bằng những kiến trúc tối tân. Chúng tôi tập trung vào suy luận độ trễ thấp và dự đoán độ chính xác cao bằng các thiết kế mô-đun."
+      },
+      "step3": {
+        "number": "03",
+        "title": "Triển khai",
+        "description": "Tích hợp mượt mà vào môi trường gốc với sự liên tục tối ưu và các luồng huấn luyện tự động, nhằm duy trì hiệu năng cao nhất."
+      }
+    },
+    "cta": {
+      "titleLine1": "Sẵn sàng để xây dựng",
+      "titleLine2": "tương lai?",
+      "description": "Hãy thảo luận về cách công nghệ AI tuỳ chỉnh có thể làm thay đổi hoàn toàn hệ thống thực thi của bạn. Nhóm của chúng tôi luôn sẵn sàng cho bước tiến tiếp theo của bạn.",
+      "button": "Bắt đầu Dự án"
+    },
+    "modal": {
+      "relatedProjects": "Dự Án Liên Quan",
+      "bookFormTitle": "Đặt Dịch Vụ Này",
+      "nameLabel": "Tên Của Bạn",
+      "emailLabel": "Địa Chỉ Email",
+      "projectNameLabel": "Tên Dự Án",
+      "budgetLabel": "Ngân Sách Dự Kiến",
+      "timeframeLabel": "Khung Thời Gian",
+      "descriptionLabel": "Chi Tiết & Yêu Cầu Dự Án",
+      "cancel": "Hủy",
+      "submit": "Gửi Yêu Cầu Đặt Lịch",
+      "submitting": "Đang gửi...",
+      "success": "Đã gửi yêu cầu đặt lịch thành công!",
+      "error": "Gửi yêu cầu thất bại. Vui lòng thử lại."
     }
   }
 }

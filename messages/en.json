@@ -202,10 +202,22 @@
       "results": {
         "title": "Key Results & Impact",
         "items": [
-          { "value": "12ms", "label": "Inference Time" },
-          { "value": "98.4%", "label": "Precision Rate" },
-          { "value": "16", "label": "Parallel Streams" },
-          { "value": "40%", "label": "Latency Reduction" }
+          {
+            "value": "12ms",
+            "label": "Inference Time"
+          },
+          {
+            "value": "98.4%",
+            "label": "Precision Rate"
+          },
+          {
+            "value": "16",
+            "label": "Parallel Streams"
+          },
+          {
+            "value": "40%",
+            "label": "Latency Reduction"
+          }
         ]
       },
       "footer": {
@@ -214,6 +226,238 @@
         "contact": "Get in Touch",
         "copyright": "© 2024 NEURAL_ENGINE_PRJ"
       }
+    }
+  },
+  "ProjectDetailPage": {
+    "nav": {
+      "overview": "Overview",
+      "techStack": "Tech Stack",
+      "results": "Results"
+    },
+    "allProjects": "All Projects",
+    "liveDemo": "Live Demo",
+    "github": "GitHub",
+    "systemActive": "SYSTEM ACTIVE",
+    "sections": {
+      "techStack": "Technology Stack",
+      "results": "Performance Results"
+    },
+    "footer": {
+      "title": "Want to work together?",
+      "subtitle": "Let's discuss how AI can accelerate your business.",
+      "copyright": "© 2024 AI Engineer Portfolio. All rights reserved."
+    }
+  },
+  "ContactPage": {
+    "available": "Available for New Projects",
+    "titlePart1": "Let's Build Something ",
+    "titleHighlight": "Together",
+    "description": "Have a vision for a breakthrough AI solution? Whether it's LLM fine-tuning, computer vision, or predictive analytics, let's discuss how we can turn your data into intelligence.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "locationLabel": "Based In",
+    "locationValue": "Hai Phong, Vietnam",
+    "form": {
+      "nameLabel": "Full Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@company.com",
+      "budgetLabel": "Estimated Budget",
+      "budgetOptionDisabled": "Select a range",
+      "descLabel": "Project Description",
+      "descPlaceholder": "Tell me about your AI needs, goals, and technical requirements...",
+      "submitButton": "Initialize Project Talk",
+      "submitButtonSubmitting": "Initializing...",
+      "responseTimePrefix": "Typical response time: ",
+      "responseTimeValue": "< 24 hours",
+      "success": {
+        "title": "Data stream established",
+        "description": "Your message has been securely transmitted. I will review your requirements and follow up shortly.",
+        "resetButton": "Send Another Message"
+      }
+    }
+  },
+  "AboutPage": {
+    "availableBadge": "Available for complex ML challenges",
+    "titlePart1": "Engineering intelligence",
+    "titleHighlight": "at the intersection of",
+    "titlePart2": "scale and ethics.",
+    "description": "I am a Senior AI Engineer specializing in large-scale machine learning systems. With nearly a decade of experience, I transition cutting-edge research into production environments, focusing on LLM orchestration, computer vision, and high-throughput data pipelines.",
+    "viewProjects": "Projects",
+    "contactBtn": "Contact",
+    "philosophy": {
+      "title": "Core Philosophy",
+      "data": {
+        "title": "Data-First Approach",
+        "desc": "Models are only as good as the data they ingest. I prioritize robust ETL pipelines and high-quality synthetic data generation before hyperparameter tuning."
+      },
+      "scale": {
+        "title": "Scalable Architecture",
+        "desc": "Building for millions, not just local notebooks. My focus is on containerized deployments, low-latency inference, and auto-scaling GPU clusters."
+      },
+      "ethics": {
+        "title": "Ethical AI",
+        "desc": "Bias detection and mitigation are features, not afterthoughts. I design systems that are transparent, interpretable, and socially responsible."
+      }
+    },
+    "timeline": {
+      "title": "Career Journey",
+      "senior": {
+        "role": "Senior AI Engineer",
+        "period": "2021 - PRESENT",
+        "company": "TechCorp Global Systems",
+        "point1": "Leading development of proprietary LLM fine-tuning pipelines reducing inference cost by 40%.",
+        "point2": "Architecting distributed training clusters on AWS/GCP for multi-modal models."
+      },
+      "research": {
+        "role": "ML Research Lead",
+        "period": "2018 - 2021",
+        "company": "AI Vision Labs",
+        "point1": "Published 4 papers on efficient neural architecture search (NAS) in CVPR/ICML.",
+        "point2": "Mentored a team of 6 research engineers in deploying real-time object detection systems."
+      },
+      "data": {
+        "role": "Data Scientist",
+        "period": "2016 - 2018",
+        "company": "DataFlow Analytics",
+        "point1": "Focused on predictive maintenance algorithms for industrial IoT and time-series forecasting at scale."
+      }
+    },
+    "skills": {
+      "title": "Technical Arsenal",
+      "coreTitle": "Core AI / ML",
+      "opsTitle": "Ops & Cloud",
+      "languagesTitle": "Languages"
+    }
+  },
+  "BlogList": {
+    "title": "Technical Insights",
+    "description": "Deep dives into high-performance computing, neural architectures, and the infrastructure of modern intelligence.",
+    "featured": "FEATURED",
+    "readArchive": "READ ARCHIVE",
+    "searchTitle": "Search Terminal",
+    "searchPlaceholder": "QUERY_SYSTEM...",
+    "subscribeTitle": "Join the Neural Network",
+    "subscribeBtn": "SUBSCRIBE TO LOGS",
+    "minRead": "{minutes} MIN READ",
+    "categories": {
+      "all": "ALL_SYSTEMS",
+      "llm": "LLM_OPS",
+      "cv": "COMP_VISION",
+      "scale": "SCALABILITY"
+    },
+    "emptyState": "No diagnostic records found in the database."
+  },
+  "BlogDetail": {
+    "systemMap": "System Map",
+    "author": "Author",
+    "duration": "Duration",
+    "architecture": "Architecture",
+    "hwSpec": "NVIDIA L40S / CUDA 12.2",
+    "minRead": "{minutes} min read",
+    "continuousLearning": "Continuous Learning",
+    "subscribeTitle": "Found this useful?",
+    "subscribeDesc": "Subscribe to technical logs for bi-weekly deep dives into AI engineering, CUDA, and distributed systems.",
+    "subscribeBtn": "Subscribe",
+    "subscribePlaceholder": "engineer@lab.com",
+    "returnArchive": "Return to Archive",
+    "modelStats": "Model Stats",
+    "views": "VIEWS",
+    "readingDepth": "READ DEPTH",
+    "latency": "LATENCY",
+    "memory": "MEMORY",
+    "logPrefix": "Technical Log //"
+  },
+  "ServicesPage": {
+    "hero": {
+      "subtitle": "Engineered Intelligence",
+      "titlePart1": "Strategic AI ",
+      "titleHighlight": "Solutions",
+      "description": "Architecting high-performance, production-ready intelligent systems. We transform complex data landscapes into sovereign neural architectures that drive autonomous growth."
+    },
+    "grid": {
+      "service1": {
+        "title": "AI System Development",
+        "description": "End-to-end engineering of custom Machine Learning models. From data synthesis to cloud-native deployment, we build robust backends that scale with your enterprise demands.",
+        "tags": [
+          "PYTORCH",
+          "TENSORFLOW",
+          "AWS SAGE_MAKER"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service2": {
+        "title": "Computer Vision Solutions",
+        "description": "Advanced visual automation for industrial inspection and security. Implementation of YOLOv8 for real-time object detection and anomaly recognition in complex environments.",
+        "tags": [
+          "OPENCV",
+          "YOLO_V8",
+          "CUDA"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service3": {
+        "title": "AI Consulting",
+        "description": "High-level architecture design and feasibility analysis. We bridge the gap between business objectives and technical implementation, ensuring ROI on AI investment.",
+        "tags": [
+          "STRATEGY",
+          "ROI_MODELS",
+          "COMPUTATIONAL_DESIGN"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      },
+      "service4": {
+        "title": "Data Automation",
+        "description": "Automated data extraction and transformation pipelines. We build intelligent bridges between fragmented data sources to fuel your AI engines with high-fidelity inputs.",
+        "tags": [
+          "APACHE_AIRFLOW",
+          "SNOWFLAKE",
+          "DOCKER"
+        ],
+        "cta": "LEARN MORE & BOOK"
+      }
+    },
+    "process": {
+      "methodology": "Methodology",
+      "titlePart1": "The Neural ",
+      "titleHighlight": "Pipeline",
+      "step1": {
+        "number": "01",
+        "title": "Analysis",
+        "description": "Deep-dive into existing data infrastructure and performance bottlenecks. We define success metrics and technical constraints before the first line of code."
+      },
+      "step2": {
+        "number": "02",
+        "title": "Engineering",
+        "description": "Iterative development using state-of-the-art architectures. We focus on low-latency inference and high-accuracy output through modular design."
+      },
+      "step3": {
+        "number": "03",
+        "title": "Deployment",
+        "description": "Seamless integration into your production environment with continuous monitoring and automated retraining loops to maintain performance peak."
+      }
+    },
+    "cta": {
+      "titleLine1": "Ready to build",
+      "titleLine2": "the future?",
+      "description": "Let's discuss how customized AI can transform your operations. Our team is ready to architect your next competitive advantage.",
+      "button": "Start a Project"
+    },
+    "modal": {
+      "relatedProjects": "Related Projects",
+      "bookFormTitle": "Book This Service",
+      "nameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "projectNameLabel": "Project Name",
+      "budgetLabel": "Estimated Budget",
+      "timeframeLabel": "Project Timeframe",
+      "descriptionLabel": "Project Details & Requirements",
+      "cancel": "Cancel",
+      "submit": "Submit Booking Request",
+      "submitting": "Submitting...",
+      "success": "Booking request sent successfully!",
+      "error": "Failed to send request. Please try again."
     }
   }
 }
