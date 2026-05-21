@@ -1,39 +1,78 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-primary: #3c83f6;
-  --color-accent-teal: #22d3ee;
-  --color-background-light: #f5f7f8;
-  --color-background-dark: #101722;
-  --font-display: var(--font-inter), sans-serif;
-  --font-mono: var(--font-jetbrains-mono), monospace;
-  --font-label: var(--font-space-grotesk), sans-serif;
-  --color-surface: #0B0F19;
-  --color-surface-container-highest: #242c42;
-  --color-surface-container-high: #1a2133;
-  --color-surface-container-low: #0e1321;
-  --color-surface-container-lowest: #06080d;
-  --color-surface-container: #121826;
-  --color-on-surface: #F1F5F9;
-  --color-on-background: #F1F5F9;
-  --color-outline: #1e293b;
-  --color-error: #ef4444;
-  --color-tertiary: #10b981;
+  --color-canvas: #fdfcfc;
+  --color-ink: #201d1d;
+  --color-ink-deep: #0f0000;
+  --color-surface-soft: #f8f7f7;
+  --color-surface-card: #f1eeee;
+  --color-surface-dark: #1a1a1a;
+  --color-surface-dark-elevated: #252525;
+  --color-hairline: rgba(15, 0, 0, 0.12);
+  --color-hairline-strong: #646262;
+  --color-charcoal: #302c2c;
+  --color-body: #424245;
+  --color-mute: #646262;
+  --color-stone: #6e6e73;
+  --color-ash: #9a9898;
+  --color-accent: #007aff;
+  --color-accent-hover: #0056b3;
+  --color-accent-active: #004085;
+  --color-danger: #ff3b30;
+  --color-danger-hover: #d70015;
+  --color-danger-active: #a50011;
+  --color-warning: #ff9f0a;
+  --color-warning-hover: #cc7f08;
+  --color-warning-active: #995f06;
+  --color-success: #30d158;
+  --color-on-dark: #e5e5e5;
+  --color-on-dark-muted: #a3a3a3;
+  --font-mono: var(--font-jetbrains-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@layer utilities {
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.dark {
+  --color-canvas: #1a1a1a;
+  --color-ink: #e5e5e5;
+  --color-ink-deep: #ffffff;
+  --color-surface-soft: #252525;
+  --color-surface-card: #2a2a2a;
+  --color-surface-dark: #111111;
+  --color-surface-dark-elevated: #1f1f1f;
+  --color-hairline: rgba(255, 255, 255, 0.12);
+  --color-hairline-strong: #555555;
+  --color-charcoal: #cccccc;
+  --color-body: #a3a3a3;
+  --color-mute: #888888;
+  --color-stone: #777777;
+  --color-ash: #666666;
+}
+
+.dark .prose {
+  --tw-prose-body: #a3a3a3;
+  --tw-prose-headings: #e5e5e5;
+  --tw-prose-bold: #e5e5e5;
+  --tw-prose-code: #e5e5e5;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
-  .grid-bg {
-    background-image: radial-gradient(circle at 2px 2px, rgba(60, 131, 246, 0.05) 1px, transparent 0);
-    background-size: 40px 40px;
+  100% {
+    transform: translateX(-50%);
   }
-  .glow-border:focus-within {
-    box-shadow: 0 0 15px rgba(60, 131, 246, 0.3);
-  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

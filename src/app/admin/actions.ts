@@ -16,6 +16,14 @@ export async function createProject(formData: FormData) {
   const imageUrl = formData.get('imageUrl') as string;
   const techStackJson = formData.get('techStack') as string;
   const metricsJson = formData.get('metrics') as string;
+  
+  // Case study fields
+  const challenge = formData.get('challenge') as string;
+  const solution = formData.get('solution') as string;
+  const impact = formData.get('impact') as string;
+  const clientName = formData.get('clientName') as string;
+  const timeline = formData.get('timeline') as string;
+  const budgetRange = formData.get('budgetRange') as string;
 
   const viTitle = (formData.get('viTitle') as string) || '';
   const viDescription = (formData.get('viDescription') as string) || '';
@@ -35,6 +43,12 @@ export async function createProject(formData: FormData) {
     githubUrl,
     demoUrl,
     imageUrl,
+    challenge: challenge || null,
+    solution: solution || null,
+    impact: impact || null,
+    clientName: clientName || null,
+    timeline: timeline || null,
+    budgetRange: budgetRange || null,
     techStack: {
       create: techStack.map((name: string) => ({ name })),
     },
@@ -70,6 +84,14 @@ export async function updateProject(id: string, formData: FormData) {
   const imageUrl = formData.get('imageUrl') as string;
   const techStackJson = formData.get('techStack') as string;
   const metricsJson = formData.get('metrics') as string;
+  
+  // Case study fields
+  const challenge = formData.get('challenge') as string;
+  const solution = formData.get('solution') as string;
+  const impact = formData.get('impact') as string;
+  const clientName = formData.get('clientName') as string;
+  const timeline = formData.get('timeline') as string;
+  const budgetRange = formData.get('budgetRange') as string;
 
   const viTitle = (formData.get('viTitle') as string) || '';
   const viDescription = (formData.get('viDescription') as string) || '';
@@ -91,6 +113,12 @@ export async function updateProject(id: string, formData: FormData) {
       githubUrl,
       demoUrl,
       imageUrl,
+      challenge: challenge || null,
+      solution: solution || null,
+      impact: impact || null,
+      clientName: clientName || null,
+      timeline: timeline || null,
+      budgetRange: budgetRange || null,
     },
   });
 

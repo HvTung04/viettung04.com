@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  app:
+    environment:
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+    restart: always

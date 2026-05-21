@@ -22,6 +22,14 @@ model Project {
   imageUrl    String?
   githubUrl   String?
   demoUrl     String?
+  
+  // Case study fields
+  challenge   String?
+  solution    String?
+  impact      String?
+  clientName  String?
+  timeline    String?
+  budgetRange String?
 
   techStack    TechStack[]
   metrics      Metric[]
@@ -83,4 +91,47 @@ model BlogTranslation {
   blog        Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
   @@unique([blogId, locale])
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  budget      String?
+  description String
+  status      String   @default("NEW") // NEW, CONTACTED, CLOSED
+  viewed      Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  company     String?
+  content     String
+  avatarUrl   String?
+  logoUrl     String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscription {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
 }

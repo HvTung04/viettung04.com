@@ -16,15 +16,15 @@ export default function ProjectFilter() {
   ];
 
   return (
-    <div className="flex flex-wrap gap-3 mb-10 overflow-x-auto pb-2 scrollbar-hide animate-in fade-in duration-700 delay-150 fill-mode-both">
+    <div className="flex flex-wrap gap-2 mb-10 overflow-x-auto pb-2">
       {filters.map((filter) => (
         <button
           key={filter.id}
           onClick={() => setActive(filter.id)}
-          className={`flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full px-6 text-sm transition-colors ${
+          className={`flex h-9 shrink-0 items-center justify-center gap-x-2 rounded px-4 text-xs font-mono transition-colors ${
             active === filter.id 
-              ? 'bg-primary text-white font-semibold' 
-              : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-300 font-medium'
+              ? 'bg-ink text-canvas font-medium' 
+              : 'bg-surface-card hover:bg-surface-soft text-body font-medium border border-hairline'
           }`}
         >
           {filter.label}

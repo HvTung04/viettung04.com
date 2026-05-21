@@ -1,58 +1,57 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { MdDarkMode, MdLightMode } from 'react-icons/md';
+import { useState, useSyncExternalStore } from 'react';
+
+function setCookie(theme: string) {
+  document.cookie = `theme=${theme};path=/;max-age=31536000;SameSite=Lax`;
+}
+
+function getIsDark() {
+  if (typeof document === 'undefined') return false;
+  return document.documentElement.classList.contains('dark');
+}
+
+function useHydrated() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    setMounted(true);
-    const isDark = document.documentElement.classList.contains('dark');
-    setTheme(isDark ? 'dark' : 'light');
-    
-    // Listen for theme changes from other components or tabs
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isDarkNow = document.documentElement.classList.contains('dark');
-          setTheme(isDarkNow ? 'dark' : 'light');
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
+  const hydrated = useHydrated();
+  const [tick, rerender] = useState(0);
 
   const toggleTheme = () => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setTheme('dark');
-    } else {
+    const isDark = getIsDark();
+    if (isDark) {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-      setTheme('light');
+      setCookie('light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setCookie('dark');
     }
+    rerender((n) => n + 1);
   };
 
-  if (!mounted) {
-    return <div className="p-2 md:p-2.5 w-9 h-9 md:w-10 md:h-10 mx-1" />;
+  if (!hydrated) {
+    return <div className="p-2 w-9 h-9" />;
   }
+
+  // read tick to force re-render after toggle
+  void tick;
+  const isDark = getIsDark();
 
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 md:p-2.5 rounded-lg text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+      className="p-2 rounded text-mute hover:text-ink hover:bg-surface-soft transition-colors font-mono text-xs"
       aria-label="Toggle dark mode"
     >
-      {theme === 'dark' ? (
-        <MdLightMode className="text-xl" />
-      ) : (
-        <MdDarkMode className="text-xl" />
-      )}
+      {isDark ? '[+]' : '[-]'}
     </button>
   );
 }

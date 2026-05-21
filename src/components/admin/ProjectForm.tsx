@@ -21,13 +21,19 @@ export type ProjectFormData = {
   viTitle: string;
   viDescription: string;
   viContent: string;
+  // Case study fields
+  challenge?: string;
+  solution?: string;
+  impact?: string;
+  clientName?: string;
+  timeline?: string;
+  budgetRange?: string;
 };
 
 export default function ProjectForm({ initialData }: { initialData?: ProjectFormData }) {
   const router = useRouter();
   const isEditing = !!initialData?.id;
   const [isPending, startTransition] = useTransition();
-
   const [activeTab, setActiveTab] = useState<'en' | 'vi'>('en');
 
   const [techStack, setTechStack] = useState<string[]>(
@@ -44,14 +50,20 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
   const [metricKey, setMetricKey] = useState('');
   const [metricVal, setMetricVal] = useState('');
 
-  // Controlled inputs for locale switching
   const [enTitle, setEnTitle] = useState(initialData?.title || '');
   const [enDesc, setEnDesc] = useState(initialData?.description || '');
   const [enContent, setEnContent] = useState(initialData?.content || '');
-
   const [viTitle, setViTitle] = useState(initialData?.viTitle || '');
   const [viDesc, setViDesc] = useState(initialData?.viDescription || '');
   const [viContent, setViContent] = useState(initialData?.viContent || '');
+
+  // Case study fields
+  const [challenge, setChallenge] = useState((initialData as any)?.challenge || '');
+  const [solution, setSolution] = useState((initialData as any)?.solution || '');
+  const [impact, setImpact] = useState((initialData as any)?.impact || '');
+  const [clientName, setClientName] = useState((initialData as any)?.clientName || '');
+  const [timeline, setTimeline] = useState((initialData as any)?.timeline || '');
+  const [budgetRange, setBudgetRange] = useState((initialData as any)?.budgetRange || '');
 
   const handleAddTech = () => {
     if (techInput.trim() && !techStack.includes(techInput.trim().toUpperCase())) {
@@ -71,20 +83,24 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
   const handleSubmit = (formData: FormData) => {
     formData.append('techStack', JSON.stringify(techStack));
     formData.append('metrics', JSON.stringify(metrics));
-
-    // Manually push controlled locale fields into FormData because they might be unmounted/hidden when submitting
     formData.set('title', enTitle);
     formData.set('description', enDesc);
     formData.set('content', enContent);
     formData.set('viTitle', viTitle);
     formData.set('viDescription', viDesc);
     formData.set('viContent', viContent);
+    
+    // Case study fields
+    formData.set('challenge', challenge);
+    formData.set('solution', solution);
+    formData.set('impact', impact);
+    formData.set('clientName', clientName);
+    formData.set('timeline', timeline);
+    formData.set('budgetRange', budgetRange);
 
     startTransition(() => {
       if (isEditing) {
-        updateProject(initialData.id!, formData).then(() => {
-          router.push('/admin/projects');
-        });
+        updateProject(initialData.id!, formData).then(() => router.push('/admin/projects'));
       } else {
         createProject(formData);
       }
@@ -92,93 +108,72 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
   };
 
   return (
-    <main className="ml-72 pt-16 min-h-screen bg-surface-container-lowest text-on-background pb-24 border-none shadow-none focus:outline-none focus:ring-0">
-      <div className="max-w-6xl mx-auto px-10 py-12 border-none shadow-none focus:outline-none focus:ring-0">
+    <main className="min-h-screen bg-surface-dark text-canvas font-mono pb-24">
+      <div className="max-w-5xl mx-auto px-8 py-12">
         
-        {/* Header Section */}
-        <div className="mb-12 border-none shadow-none focus:outline-none focus:ring-0">
-          <div className="flex items-center gap-2 mb-4 border-none shadow-none focus:outline-none focus:ring-0">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary bg-primary/10 px-2 py-1 rounded">Project Registry</span>
-            <span className="material-symbols-outlined text-slate-700 text-xs" data-icon="chevron_right">chevron_right</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">{isEditing ? 'EDIT_ENTITY' : 'NEW_ENTITY'}</span>
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="font-mono text-[10px] text-mute">[+]</span>
+            <span className="font-mono text-[10px] text-mute uppercase tracking-widest">PROJECT REGISTRY</span>
+            <span className="text-mute">→</span>
+            <span className="font-mono text-[10px] text-mute uppercase tracking-widest">{isEditing ? 'EDIT' : 'NEW'}</span>
           </div>
-          <h2 className="text-5xl font-black tracking-tighter text-slate-100">{isEditing ? 'Modify Project Entity' : 'Configure Project Entity'}</h2>
-          <p className="text-slate-400 mt-4 max-w-2xl leading-relaxed">Modify the parameters and technical specifications for the AI-driven deployment. Ensure all metadata aligns with system architecture protocols.</p>
+          <h2 className="text-sm font-bold text-ink-deep">{isEditing ? 'Modify Project' : 'Configure Project'}</h2>
+          <p className="text-xs text-mute mt-2">Enter project specifications and metadata.</p>
         </div>
 
-        <form action={handleSubmit} className="space-y-8 border-none shadow-none focus:outline-none focus:ring-0">
+        <form action={handleSubmit} className="space-y-8">
           
-          <div className="grid grid-cols-12 gap-8 border-none shadow-none focus:outline-none focus:ring-0">
+          <div className="grid grid-cols-12 gap-8">
             
-            {/* Left Column: Core Identity */}
-            <div className="col-span-12 lg:col-span-7 space-y-8 border-none shadow-none focus:outline-none focus:ring-0">
+            <div className="col-span-12 lg:col-span-7 space-y-8">
               
-              <section className="bg-surface-container rounded-xl p-8 border border-outline shadow-sm focus:outline-none focus:ring-0">
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-slate-500 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-sm" data-icon="fingerprint">fingerprint</span>
-                    Core Identity
-                  </h3>
-                  
-                  {/* Language Tab Toggle */}
-                  <div className="flex bg-surface-container-low rounded-lg p-1 border border-outline">
-                    <button 
-                      type="button" 
-                      onClick={() => setActiveTab('en')}
-                      className={`px-4 py-1.5 text-xs font-bold font-mono tracking-widest rounded transition-all ${activeTab === 'en' ? 'bg-primary text-white shadow-md' : 'text-slate-500 hover:text-slate-300'}`}
-                    >
-                      ENG
-                    </button>
-                    <button 
-                      type="button" 
-                      onClick={() => setActiveTab('vi')}
-                      className={`px-4 py-1.5 text-xs font-bold font-mono tracking-widest rounded transition-all ${activeTab === 'vi' ? 'bg-primary text-white shadow-md' : 'text-slate-500 hover:text-slate-300'}`}
-                    >
-                      VIE
-                    </button>
+                  <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest">[1] Core Identity</h3>
+                  <div className="flex bg-surface-card rounded-sm border border-hairline">
+                    <button type="button" onClick={() => setActiveTab('en')} className={`px-4 py-1.5 text-xs font-bold font-mono rounded-sm transition-colors ${activeTab === 'en' ? 'bg-ink-deep text-canvas' : 'text-mute hover:text-body'}`}>ENG</button>
+                    <button type="button" onClick={() => setActiveTab('vi')} className={`px-4 py-1.5 text-xs font-bold font-mono rounded-sm transition-colors ${activeTab === 'vi' ? 'bg-ink-deep text-canvas' : 'text-mute hover:text-body'}`}>VIE</button>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  {/* English Identity Fields */}
                   {activeTab === 'en' && (
-                    <div className="space-y-6 animate-in fade-in duration-300">
+                    <div className="space-y-6">
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Project Title (EN)</label>
-                        <input value={enTitle} onChange={e => setEnTitle(e.target.value)} required className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none" type="text" placeholder="Neural Synthesis Engine" />
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Project Title (EN)</label>
+                        <input value={enTitle} onChange={e => setEnTitle(e.target.value)} required className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none" type="text" placeholder="Neural Synthesis Engine" />
                       </div>
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Short Description (EN)</label>
-                        <textarea value={enDesc} onChange={e => setEnDesc(e.target.value)} required className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none resize-none" rows={3} placeholder="Next-generation latency reduction framework..."></textarea>
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Short Description (EN)</label>
+                        <textarea value={enDesc} onChange={e => setEnDesc(e.target.value)} required className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none resize-none" rows={3} placeholder="Next-generation latency reduction framework..."></textarea>
                       </div>
                     </div>
                   )}
 
-                  {/* Vietnamese Identity Fields */}
                   {activeTab === 'vi' && (
-                    <div className="space-y-6 animate-in fade-in duration-300">
+                    <div className="space-y-6">
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Project Title (VI)</label>
-                        <input value={viTitle} onChange={e => setViTitle(e.target.value)} className="w-full bg-surface-container-low border border-[rgba(16,185,129,0.3)] rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-tertiary focus:border-tertiary transition-all outline-none" type="text" placeholder="Tiêu đề tiếng Việt" />
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Project Title (VI)</label>
+                        <input value={viTitle} onChange={e => setViTitle(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none" type="text" placeholder="Tiêu đề tiếng Việt" />
                       </div>
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Short Description (VI)</label>
-                        <textarea value={viDesc} onChange={e => setViDesc(e.target.value)} className="w-full bg-surface-container-low border border-[rgba(16,185,129,0.3)] rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-tertiary focus:border-tertiary transition-all outline-none resize-none" rows={3} placeholder="Mô tả dự án..."></textarea>
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Short Description (VI)</label>
+                        <textarea value={viDesc} onChange={e => setViDesc(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none resize-none" rows={3} placeholder="Mô tả dự án..."></textarea>
                       </div>
                     </div>
                   )}
 
-                  {/* Shared Meta Fields */}
-                  <div className="pt-6 border-t border-outline space-y-6">
+                  <div className="pt-6 border-t border-hairline space-y-6">
                     <div>
-                      <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Project Slug</label>
-                      <input name="slug" defaultValue={initialData?.slug} required className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none font-mono" type="text" placeholder="neural-synthesis" />
+                      <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Project Slug</label>
+                      <input name="slug" defaultValue={initialData?.slug} required className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none font-mono" type="text" placeholder="neural-synthesis" />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Category</label>
-                        <select name="category" defaultValue={initialData?.category || 'Machine Learning'} className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none appearance-none">
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Category</label>
+                        <select name="category" defaultValue={initialData?.category || 'Machine Learning'} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none">
                           <option value="Machine Learning">Machine Learning</option>
                           <option value="Generative AI">Generative AI</option>
                           <option value="Computer Vision">Computer Vision</option>
@@ -186,8 +181,8 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
                         </select>
                       </div>
                       <div>
-                        <label className="block font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-2">Visibility</label>
-                        <select name="visibility" defaultValue={initialData?.visibility || 'PUBLIC'} className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none appearance-none">
+                        <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Visibility</label>
+                        <select name="visibility" defaultValue={initialData?.visibility || 'PUBLIC'} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none">
                           <option value="PUBLIC">Public</option>
                           <option value="INTERNAL">Internal</option>
                         </select>
@@ -197,124 +192,124 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
                 </div>
               </section>
 
-              <section className="bg-surface-container rounded-xl p-8 border border-outline shadow-sm">
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-slate-500 mb-6 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm" data-icon="description">description</span>
-                  Technical Breakdown ({activeTab === 'en' ? 'EN' : 'VI'})
-                </h3>
-                <div className={`bg-surface-container-low border rounded-lg overflow-hidden transition-colors ${activeTab === 'vi' ? 'border-[rgba(16,185,129,0.3)]' : 'border-outline'}`}>
-                  <div className="flex items-center gap-4 px-4 py-2 border-b border-inherit bg-surface-container-high/50">
-                    <button className="text-slate-400 hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined text-lg" data-icon="format_bold">format_bold</span></button>
-                    <button className="text-slate-400 hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined text-lg" data-icon="format_italic">format_italic</span></button>
-                    <button className="text-slate-400 hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined text-lg" data-icon="format_list_bulleted">format_list_bulleted</span></button>
-                    <button className="text-slate-400 hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined text-lg" data-icon="code">code</span></button>
-                    <div className="h-4 w-px bg-slate-800 ml-auto"></div>
-                    <span className="font-mono text-[10px] text-slate-600 uppercase">Markdown Enabled</span>
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
+                <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest mb-6">[2] Technical Breakdown ({activeTab === 'en' ? 'EN' : 'VI'})</h3>
+                <textarea 
+                  value={activeTab === 'en' ? enContent : viContent} 
+                  onChange={e => activeTab === 'en' ? setEnContent(e.target.value) : setViContent(e.target.value)} 
+                  className="w-full bg-canvas border border-hairline rounded-sm px-4 py-3 text-xs text-body focus:border-ink focus:outline-none resize-none font-mono" 
+                  placeholder="Enter technical implementation details..." 
+                  rows={8}
+                />
+              </section>
+
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
+                <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest mb-6">[3] Case Study Details</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Client Name</label>
+                    <input value={clientName} onChange={e => setClientName(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none" type="text" placeholder="Acme Corp (optional)" />
                   </div>
-                  {activeTab === 'en' ? (
-                    <textarea value={enContent} onChange={e => setEnContent(e.target.value)} className="w-full bg-transparent border-none focus:ring-0 px-4 py-4 text-slate-300 font-mono text-sm leading-relaxed outline-none" placeholder="Enter technical implementation details in English..." rows={8}></textarea>
-                  ) : (
-                    <textarea value={viContent} onChange={e => setViContent(e.target.value)} className="w-full bg-transparent border-none focus:ring-0 px-4 py-4 text-slate-300 font-mono text-sm leading-relaxed outline-none" placeholder="Nhập chi tiết kỹ thuật bằng tiếng Việt..." rows={8}></textarea>
-                  )}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Timeline</label>
+                      <input value={timeline} onChange={e => setTimeline(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none" type="text" placeholder="8 weeks" />
+                    </div>
+                    <div>
+                      <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Budget Range</label>
+                      <input value={budgetRange} onChange={e => setBudgetRange(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none" type="text" placeholder="$50K - $75K" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">The Challenge</label>
+                    <textarea value={challenge} onChange={e => setChallenge(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none resize-none" rows={3} placeholder="What problem did the client face?"></textarea>
+                  </div>
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">The Solution</label>
+                    <textarea value={solution} onChange={e => setSolution(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none resize-none" rows={4} placeholder="How did you approach and solve it?"></textarea>
+                  </div>
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">The Impact</label>
+                    <textarea value={impact} onChange={e => setImpact(e.target.value)} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none resize-none" rows={3} placeholder="What measurable results were achieved?"></textarea>
+                  </div>
                 </div>
               </section>
             </div>
 
-            {/* Right Column: Meta & Links */}
             <div className="col-span-12 lg:col-span-5 space-y-8">
-              <section className="bg-surface-container rounded-xl p-8 border border-outline shadow-sm">
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-slate-500 mb-6 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm" data-icon="link">link</span>
-                  Deployment Assets
-                </h3>
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
+                <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest mb-6">[4] Deployment Assets</h3>
                 <div className="space-y-4">
-                  <div className="relative group">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-mono text-xs text-slate-600">GH/</span>
-                    <input name="githubUrl" defaultValue={initialData?.githubUrl} className="w-full bg-surface-container-low border border-outline rounded-lg pl-12 pr-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="username/repository" type="text" />
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">GitHub URL</label>
+                    <input name="githubUrl" defaultValue={initialData?.githubUrl} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none font-mono" placeholder="username/repository" type="text" />
                   </div>
-                  <div className="relative group">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-mono text-xs text-slate-600">WWW/</span>
-                    <input name="demoUrl" defaultValue={initialData?.demoUrl} className="w-full bg-surface-container-low border border-outline rounded-lg pl-14 pr-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="https://demo.neural.ai" type="text" />
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Demo URL</label>
+                    <input name="demoUrl" defaultValue={initialData?.demoUrl} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none font-mono" placeholder="https://demo.neural.ai" type="text" />
                   </div>
-                  <div className="relative group">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-mono text-xs text-slate-600">IMG/</span>
-                    <input name="imageUrl" defaultValue={initialData?.imageUrl} className="w-full bg-surface-container-low border border-outline rounded-lg pl-14 pr-4 py-3 text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none font-mono text-xs" placeholder="https://lh3.googleusercontent.com/..." type="text" />
+                  <div>
+                    <label className="block font-mono text-[10px] text-mute uppercase tracking-widest mb-2">Image URL</label>
+                    <input name="imageUrl" defaultValue={initialData?.imageUrl} className="w-full bg-canvas border border-hairline rounded-sm px-4 py-2.5 text-xs text-body focus:border-ink focus:outline-none font-mono" placeholder="https://..." type="text" />
                   </div>
                 </div>
               </section>
 
-              <section className="bg-surface-container rounded-xl p-8 border border-outline shadow-sm">
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-slate-500 mb-6 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm" data-icon="memory">memory</span>
-                  Tech Stack
-                </h3>
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
+                <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest mb-6">[5] Tech Stack</h3>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {techStack.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-slate-900 border border-slate-800 text-slate-300 rounded-lg text-[10px] font-mono flex items-center gap-2">
+                    <span key={tech} className="px-2 py-1 bg-surface-card border border-hairline text-body rounded-sm text-[10px] font-mono flex items-center gap-2">
                       {tech}
-                      <button onClick={() => setTechStack(techStack.filter(t => t !== tech))} className="hover:text-error transition-colors" type="button"><span className="material-symbols-outlined text-[12px]" data-icon="close">close</span></button>
+                      <button onClick={() => setTechStack(techStack.filter(t => t !== tech))} className="text-mute hover:text-danger transition-colors" type="button">×</button>
                     </span>
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <input value={techInput} onChange={(e) => setTechInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTech())} className="w-full bg-surface-container-low border border-outline rounded-lg px-4 py-3 text-slate-100 font-mono text-[10px] uppercase tracking-widest focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="ADD TECHNOLOGY..." type="text" />
-                  <button type="button" onClick={handleAddTech} className="px-4 bg-slate-800 text-white rounded-lg hover:bg-primary transition-colors">Add</button>
+                  <input value={techInput} onChange={(e) => setTechInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTech())} className="w-full bg-canvas border border-hairline rounded-sm px-3 py-2 text-xs text-body focus:border-ink focus:outline-none font-mono uppercase" placeholder="ADD TECHNOLOGY..." type="text" />
+                  <button type="button" onClick={handleAddTech} className="px-4 bg-ink-deep text-canvas font-bold rounded-sm text-xs hover:bg-ink transition-colors border border-hairline">Add</button>
                 </div>
               </section>
 
-              <section className="bg-surface-container rounded-xl p-8 border border-outline shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-                  <span className="material-symbols-outlined text-6xl" data-icon="monitoring">monitoring</span>
-                </div>
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-slate-500 mb-6 flex items-center gap-2 relative z-10">
-                  <span className="material-symbols-outlined text-sm" data-icon="analytics">analytics</span>
-                  Performance Metrics
-                </h3>
-                <div className="space-y-4 mb-6 relative z-10">
+              <section className="bg-surface-soft border border-hairline rounded-sm p-6">
+                <h3 className="font-mono text-[10px] text-mute uppercase tracking-widest mb-6">[6] Performance Metrics</h3>
+                <div className="space-y-4 mb-6">
                   <div className="grid grid-cols-2 gap-4">
                     {metrics.map((m, idx) => (
-                      <div key={idx} className="p-3 bg-surface-container-low border border-outline rounded-lg relative group">
-                        <button type="button" onClick={() => setMetrics(metrics.filter((_, i) => i !== idx))} className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 text-slate-500 hover:text-error transition-all">
-                          <span className="material-symbols-outlined text-xs" data-icon="close">close</span>
-                        </button>
-                        <p className="font-mono text-[9px] text-slate-600 uppercase mb-1 truncate">{m.key}</p>
-                        <p className="text-slate-100 font-bold max-w-[90%] truncate" title={m.value}>{m.value}</p>
+                      <div key={idx} className="p-3 bg-surface-card border border-hairline rounded-sm relative group">
+                        <button type="button" onClick={() => setMetrics(metrics.filter((_, i) => i !== idx))} className="absolute top-1 right-1 text-mute hover:text-danger transition-colors">×</button>
+                        <p className="font-mono text-[9px] text-mute uppercase mb-1 truncate">{m.key}</p>
+                        <p className="text-body font-bold text-xs">{m.value}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="flex gap-2 relative z-10">
-                  <input value={metricKey} onChange={e => setMetricKey(e.target.value)} className="w-1/2 bg-surface-container-low border border-outline rounded-lg px-3 py-2 text-slate-100 font-mono text-[10px] uppercase outline-none" placeholder="KEY" type="text" />
-                  <input value={metricVal} onChange={e => setMetricVal(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddMetric())} className="w-1/2 bg-surface-container-low border border-outline rounded-lg px-3 py-2 text-slate-100 font-mono text-[10px] uppercase outline-none" placeholder="VALUE" type="text" />
+                <div className="flex gap-2">
+                  <input value={metricKey} onChange={e => setMetricKey(e.target.value)} className="w-1/2 bg-canvas border border-hairline rounded-sm px-3 py-2 text-xs text-body focus:border-ink focus:outline-none font-mono uppercase" placeholder="KEY" type="text" />
+                  <input value={metricVal} onChange={e => setMetricVal(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddMetric())} className="w-1/2 bg-canvas border border-hairline rounded-sm px-3 py-2 text-xs text-body focus:border-ink focus:outline-none font-mono uppercase" placeholder="VALUE" type="text" />
                 </div>
-                <button onClick={handleAddMetric} className="w-full mt-3 py-2 border border-dashed border-slate-800 text-slate-500 text-[10px] font-mono uppercase tracking-widest hover:bg-slate-900/50 hover:text-slate-300 transition-all rounded-lg relative z-10" type="button">
-                  + Append Metric
-                </button>
               </section>
             </div>
           </div>
 
-          {/* Footer Actions */}
-          <div className="fixed bottom-0 left-72 right-0 bg-slate-950/90 backdrop-blur-xl border-t border-slate-900 p-6 flex justify-between items-center z-40">
-            <div className="flex items-center gap-4 text-slate-500 font-mono text-[10px] uppercase tracking-widest">
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-tertiary"></span> System Ready</span>
-              <span className="h-3 w-px bg-slate-800"></span>
+          <div className="fixed bottom-0 left-72 right-0 bg-surface-dark/90 backdrop-blur-md border-t border-hairline p-6 flex justify-between items-center z-40">
+            <div className="flex items-center gap-4 text-mute font-mono text-[10px] uppercase tracking-widest">
+              <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-sm bg-success"></div> System Ready</span>
+              <span className="h-3 w-px bg-hairline"></span>
               <span>Auto-save active</span>
             </div>
             <div className="flex gap-4">
-              <Link href="/admin/projects" className="px-8 py-3 bg-slate-900 text-slate-400 font-bold text-sm tracking-wide uppercase rounded-lg border border-slate-800 hover:text-slate-200 transition-all active:scale-95 text-center">
+              <Link href="/admin/projects" className="px-8 py-2.5 bg-surface-card text-body font-bold text-xs uppercase rounded-sm border border-hairline hover:text-ink transition-colors">
                 Cancel
               </Link>
-              <button disabled={isPending} className="px-10 py-3 bg-primary text-white font-bold text-sm tracking-wide uppercase rounded-lg shadow-xl shadow-primary/20 hover:brightness-110 transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50" type="submit">
-                <span className="material-symbols-outlined text-sm" data-icon="save">save</span>
+              <button disabled={isPending} className="px-10 py-2.5 bg-ink-deep text-canvas font-bold text-xs uppercase rounded-sm border border-hairline hover:bg-ink transition-colors flex items-center gap-2 disabled:opacity-50" type="submit">
                 {isPending ? 'Saving...' : 'Save Changes'}
               </button>
             </div>
           </div>
         </form>
         
-        {/* Bottom Margin for Scroll Space */}
-        <div className="h-32 mb-10 pb-10"></div>
+        <div className="h-32"></div>
       </div>
     </main>
   );

@@ -1,5 +1,7 @@
 'use server';
 
+import prisma from '@/lib/db';
+
 export async function submitContactForm(formData: FormData) {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
@@ -8,6 +10,20 @@ export async function submitContactForm(formData: FormData) {
 
   // Simulate network delay for UX
   await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  // Save to database
+  try {
+    await prisma.contactSubmission.create({
+      data: {
+        name,
+        email,
+        budget: budget || null,
+        description,
+      },
+    });
+  } catch (error) {
+    console.error('Failed to save contact submission to DB', error);
+  }
 
   // If a Discord webhook is provided, dispatch a notification
   const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
