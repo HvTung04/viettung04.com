@@ -2,8 +2,10 @@
 
 import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
+import { requireAuth } from '../../auth';
 
 export async function createTestimonial(formData: FormData) {
+  await requireAuth();
   const name = formData.get('name') as string;
   const role = formData.get('role') as string;
   const company = formData.get('company') as string | null;
@@ -36,6 +38,7 @@ export async function createTestimonial(formData: FormData) {
 }
 
 export async function updateTestimonial(formData: FormData) {
+  await requireAuth();
   const id = formData.get('id') as string;
   const name = formData.get('name') as string;
   const role = formData.get('role') as string;

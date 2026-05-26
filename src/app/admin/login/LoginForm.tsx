@@ -43,7 +43,7 @@ export default function LoginForm() {
           type="email"
           required
           className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 focus:border-accent focus:bg-surface-dark text-on-dark text-sm font-mono outline-none transition-colors"
-          placeholder="admin@example.com"
+          placeholder="viettung.hoang"
         />
       </div>
 
@@ -69,7 +69,7 @@ export default function LoginForm() {
       </button>
 
       <p className="text-center text-xs text-on-dark-muted">
-        Default: admin@example.com / admin123
+        viettung.hoang / admin@viettung04
       </p>
     </form>
   );

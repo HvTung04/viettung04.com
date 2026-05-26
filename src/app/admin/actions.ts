@@ -3,8 +3,10 @@
 import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { requireAuth } from './auth';
 
 export async function createProject(formData: FormData) {
+  await requireAuth();
   const title = formData.get('title') as string;
   const slug = formData.get('slug') as string;
   const description = formData.get('description') as string;
@@ -73,6 +75,7 @@ export async function createProject(formData: FormData) {
 }
 
 export async function updateProject(id: string, formData: FormData) {
+  await requireAuth();
   const title = formData.get('title') as string;
   const slug = formData.get('slug') as string;
   const description = formData.get('description') as string;
@@ -163,6 +166,7 @@ export async function updateProject(id: string, formData: FormData) {
 }
 
 export async function deleteProject(id: string) {
+  await requireAuth();
   await prisma.project.delete({
     where: { id },
   });
@@ -171,6 +175,7 @@ export async function deleteProject(id: string) {
 }
 
 export async function createBlog(formData: FormData) {
+  await requireAuth();
   const title = formData.get('title') as string;
   const slug = formData.get('slug') as string;
   const description = formData.get('description') as string;
@@ -201,6 +206,7 @@ export async function createBlog(formData: FormData) {
 }
 
 export async function updateBlog(id: string, formData: FormData) {
+  await requireAuth();
   const title = formData.get('title') as string;
   const slug = formData.get('slug') as string;
   const description = formData.get('description') as string;
@@ -238,6 +244,7 @@ export async function updateBlog(id: string, formData: FormData) {
 }
 
 export async function deleteBlog(id: string) {
+  await requireAuth();
   await prisma.blog.delete({
     where: { id },
   });

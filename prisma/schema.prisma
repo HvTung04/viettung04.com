@@ -135,3 +135,63 @@ model NewsletterSubscription {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String   // e.g., "AI System Dev", "Computer Vision", "NLP", "Data Automation"
+  tags        String?  // comma-separated tags
+  icon        String?  // icon identifier or emoji
+  order       Int      @default(0)
+  status      String   @default("ACTIVE") // ACTIVE, INACTIVE
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Faq {
+  id       String   @id @default(cuid())
+  question String
+  answer   String
+  category String?  // e.g., "General", "Services", "Pricing"
+  order    Int      @default(0)
+  status   String   @default("ACTIVE") // ACTIVE, INACTIVE
+  locale   String   @default("en") // 'en', 'vi'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteMetric {
+  id          String   @id @default(cuid())
+  label       String   // e.g., "Years Experience"
+  value       String   // e.g., "12+"
+  suffix      String?  // e.g., "%", "x"
+  description String?  // e.g., "Production ML systems deployed"
+  order       Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String?
+  websiteUrl String?
+  order     Int      @default(0)
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Technology {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // e.g., "ML Frameworks", "Data Engineering", "DevOps", "Languages"
+  description String?
+  iconUrl     String?
+  order       Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

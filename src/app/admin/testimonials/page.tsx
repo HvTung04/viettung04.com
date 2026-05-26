@@ -78,6 +78,8 @@ export default async function TestimonialsPage() {
                           <form
                             action={async () => {
                               'use server';
+                              const { requireAuth } = await import('../auth');
+                              await requireAuth();
                               await prisma.testimonial.delete({
                                 where: { id: testimonial.id },
                               });
