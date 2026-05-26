@@ -12,7 +12,12 @@ export default function AdminSidebar() {
     { name: 'Projects', href: '/admin/projects', marker: '[P]' },
     { name: 'Blog', href: '/admin/blogs', marker: '[B]' },
     { name: 'Testimonials', href: '/admin/testimonials', marker: '[T]' },
-    { name: 'Submissions', href: '/admin/submissions', marker: '[S]' },
+    { name: 'Services', href: '/admin/services', marker: '[S]' },
+    { name: 'FAQ', href: '/admin/faqs', marker: '[F]' },
+    { name: 'Metrics', href: '/admin/metrics', marker: '[M]' },
+    { name: 'Clients', href: '/admin/clients', marker: '[C]' },
+    { name: 'Tech Stack', href: '/admin/technologies', marker: '[E]' },
+    { name: 'Submissions', href: '/admin/submissions', marker: '[I]' },
     { name: 'Newsletter', href: '/admin/newsletter', marker: '[N]' },
   ];
 
