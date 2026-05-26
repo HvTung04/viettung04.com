@@ -41,6 +41,23 @@ export default async function ServicesPage({ params }: Props) {
     };
   });
 
+  const services = await prisma.service.findMany({
+    where: { status: 'ACTIVE' },
+    orderBy: { order: 'asc' },
+    include: { translations: true },
+  });
+
+  const resolvedServices = services.map((service) => {
+    const translation = service.translations.find((tr) => tr.locale === locale);
+    return {
+      id: service.id,
+      title: translation?.title || service.title,
+      description: translation?.description || service.description,
+      category: service.category,
+      tags: service.tags,
+    };
+  });
+
   return (
     <div className="bg-canvas text-ink min-h-screen flex flex-col font-mono">
       <Navbar />
@@ -62,7 +79,7 @@ export default async function ServicesPage({ params }: Props) {
         </section>
 
         {/* Service Grid Component handles interaction & modal */}
-        <ServiceGrid projects={serializedProjects} />
+        <ServiceGrid projects={serializedProjects} services={resolvedServices} />
 
         {/* Process Section */}
         <section className="border-t border-hairline py-20 md:py-32">

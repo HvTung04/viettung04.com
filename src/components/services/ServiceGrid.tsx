@@ -14,53 +14,17 @@ type Project = {
   imageUrl: string | null;
 };
 
-type ServiceDef = {
+type Service = {
   id: string;
-  titleKey: string;
-  descKey: string;
-  tagsKey: string;
-  ctaKey: string;
-  categoryMatch: string[];
+  title: string;
+  description: string;
+  category: string;
+  tags: string | null;
 };
 
-const SERVICES: ServiceDef[] = [
-  {
-    id: 'service1',
-    titleKey: 'grid.service1.title',
-    descKey: 'grid.service1.description',
-    tagsKey: 'grid.service1.tags',
-    ctaKey: 'grid.service1.cta',
-    categoryMatch: ['Machine Learning', 'Generative AI', 'NLP']
-  },
-  {
-    id: 'service2',
-    titleKey: 'grid.service2.title',
-    descKey: 'grid.service2.description',
-    tagsKey: 'grid.service2.tags',
-    ctaKey: 'grid.service2.cta',
-    categoryMatch: ['Computer Vision']
-  },
-  {
-    id: 'service3',
-    titleKey: 'grid.service3.title',
-    descKey: 'grid.service3.description',
-    tagsKey: 'grid.service3.tags',
-    ctaKey: 'grid.service3.cta',
-    categoryMatch: ['AI Consulting', 'Architecture']
-  },
-  {
-    id: 'service4',
-    titleKey: 'grid.service4.title',
-    descKey: 'grid.service4.description',
-    tagsKey: 'grid.service4.tags',
-    ctaKey: 'grid.service4.cta',
-    categoryMatch: ['Data Engineering', 'Data Automation']
-  }
-];
-
-export default function ServiceGrid({ projects }: { projects: Project[] }) {
+export default function ServiceGrid({ projects, services }: { projects: Project[]; services: Service[] }) {
   const t = useTranslations('ServicesPage');
-  const [selectedService, setSelectedService] = useState<ServiceDef | null>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -73,8 +37,7 @@ export default function ServiceGrid({ projects }: { projects: Project[] }) {
     
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formData.append('service', t(selectedService.titleKey as any));
+    formData.append('service', selectedService.title);
 
     try {
       const res = await submitBookingForm(formData);
@@ -93,15 +56,15 @@ export default function ServiceGrid({ projects }: { projects: Project[] }) {
     }
   };
 
-  const getRelatedProjects = (categoryMatch: string[]) => {
-    return projects.filter(p => categoryMatch.includes(p.category));
+  const getRelatedProjects = (category: string) => {
+    return projects.filter(p => p.category === category);
   };
 
   return (
     <>
       <section className="px-4 sm:px-8 pb-24 max-w-[960px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-hairline">
-          {SERVICES.map((s) => (
+          {services.map((s) => (
             <div 
               key={s.id} 
               onClick={() => { setSelectedService(s); setSubmitStatus('idle'); }}
@@ -109,20 +72,22 @@ export default function ServiceGrid({ projects }: { projects: Project[] }) {
             >
               <div className="grow flex flex-col">
                 <h3 className="text-base font-bold text-ink mb-4">
-                  [+] {t(s.titleKey as "grid.service1.title" | "grid.service2.title" | "grid.service3.title" | "grid.service4.title")}
+                  [+] {s.title}
                 </h3>
                 <p className="text-body text-sm mb-8 leading-relaxed grow">
-                  {t(s.descKey as "grid.service1.description" | "grid.service2.description" | "grid.service3.description" | "grid.service4.description")}
+                  {s.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {t.raw(s.tagsKey as "grid.service1.tags" | "grid.service2.tags" | "grid.service3.tags" | "grid.service4.tags").map((tag: string, i: number) => (
-                    <span key={i} className="font-mono text-[10px] px-2 py-0.5 bg-surface-card text-body rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {s.tags && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {s.tags.split(',').map((tag, i) => (
+                      <span key={i} className="font-mono text-[10px] px-2 py-0.5 bg-surface-card text-body rounded">
+                        {tag.trim()}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div className="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-accent-hover transition-colors w-fit">
-                  {t(s.ctaKey as "grid.service1.cta" | "grid.service2.cta" | "grid.service3.cta" | "grid.service4.cta")}
+                  {t('grid.cta')}
                   <span>→</span>
                 </div>
               </div>
@@ -140,7 +105,7 @@ export default function ServiceGrid({ projects }: { projects: Project[] }) {
             {/* Modal Header */}
             <div className="flex justify-between items-center p-6 border-b border-hairline">
               <h3 className="text-base font-bold text-ink">
-                {t(selectedService.titleKey as "grid.service1.title" | "grid.service2.title" | "grid.service3.title" | "grid.service4.title")}
+                {selectedService.title}
               </h3>
               <button onClick={() => setSelectedService(null)} className="cursor-pointer text-mute hover:text-ink bg-surface-soft p-2 rounded transition-colors font-mono text-xs">
                 [x]
@@ -150,17 +115,17 @@ export default function ServiceGrid({ projects }: { projects: Project[] }) {
             {/* Modal Body */}
             <div className="p-6 max-h-[70vh] overflow-y-auto">
               <p className="text-body text-sm bg-surface-soft p-4 rounded mb-8">
-                {t(selectedService.descKey as "grid.service1.description" | "grid.service2.description" | "grid.service3.description" | "grid.service4.description")}
+                {selectedService.description}
               </p>
 
               {/* Related Projects */}
-              {getRelatedProjects(selectedService.categoryMatch).length > 0 && (
+              {getRelatedProjects(selectedService.category).length > 0 && (
                 <div className="mb-10">
                   <h4 className="text-sm font-bold text-ink mb-4">
                     {t('modal.relatedProjects')}
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {getRelatedProjects(selectedService.categoryMatch).map(p => (
+                    {getRelatedProjects(selectedService.category).map(p => (
                       <Link key={p.id} href={`/projects/${p.slug}`} className="block p-4 rounded border border-hairline hover:border-hairline-strong transition-colors bg-surface-soft">
                         <h5 className="font-bold text-ink mb-1 text-sm">{p.title}</h5>
                         <p className="text-xs text-body line-clamp-2">{p.description}</p>

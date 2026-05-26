@@ -10,7 +10,7 @@ import Cta from '@/components/Cta';
 import Footer from '@/components/Footer';
 import prisma from '@/lib/db';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -28,7 +28,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function HomePage() {
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const projects = await prisma.project.findMany({
     where: { status: 'ACTIVE', visibility: 'PUBLIC' },
     orderBy: { createdAt: 'desc' },
@@ -44,8 +51,8 @@ export default async function HomePage() {
       <Projects projects={projects} />
       <Testimonials />
       <ClientLogos />
-      <TechStack />
-      <Services />
+      <TechStack locale={locale} />
+      <Services locale={locale} />
       <Cta />
       <Footer />
     </>

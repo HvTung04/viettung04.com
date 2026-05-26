@@ -1,17 +1,10 @@
-import { getTranslations } from 'next-intl/server';
+import prisma from '@/lib/db';
 
 export default async function ClientLogos() {
-  const t = await getTranslations('ServicesPage');
-
-  // Placeholder logos - replace with actual client logos
-  const logos = [
-    { name: 'MediTech AI', url: 'https://via.placeholder.com/120x40?text=MediTech' },
-    { name: 'DataFlow Systems', url: 'https://via.placeholder.com/120x40?text=DataFlow' },
-    { name: 'HealthFirst', url: 'https://via.placeholder.com/120x40?text=HealthFirst' },
-    { name: 'Neural Labs', url: 'https://via.placeholder.com/120x40?text=Neural' },
-    { name: 'Quantum Corp', url: 'https://via.placeholder.com/120x40?text=Quantum' },
-    { name: 'Vision AI', url: 'https://via.placeholder.com/120x40?text=Vision' },
-  ];
+  const clients = await prisma.client.findMany({
+    where: { status: 'ACTIVE' },
+    orderBy: { order: 'asc' },
+  });
 
   return (
     <section className="py-16 border-b border-hairline">
@@ -19,17 +12,27 @@ export default async function ClientLogos() {
         <p className="font-mono text-xs uppercase tracking-widest text-mute mb-8 text-center">
           [ Trusted by industry leaders ]
         </p>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
-          {logos.map((logo) => (
-            <div key={logo.name} className="flex items-center justify-center">
-              <img
-                src={logo.url}
-                alt={logo.name}
-                className="h-8 opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
-              />
-            </div>
-          ))}
-        </div>
+        {clients.length > 0 ? (
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
+            {clients.map((client) => (
+              <div key={client.id} className="flex items-center justify-center">
+                {client.logoUrl ? (
+                  <img
+                    src={client.logoUrl}
+                    alt={client.name}
+                    className="h-8 opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  />
+                ) : (
+                  <span className="text-xs text-mute font-mono">{client.name}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-mute text-sm py-4">
+            No clients configured yet.
+          </div>
+        )}
       </div>
     </section>
   );
