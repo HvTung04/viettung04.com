@@ -5,13 +5,6 @@ import {Link, usePathname} from '@/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 
-const ASCII_WORDMARK = `██╗   ██╗██╗███████╗████████╗    ████████╗██╗   ██╗███╗   ██╗ ██████╗      █████╗ ██╗
-██║   ██║██║██╔════╝╚══██╔══╝    ██╔════╝██║   ██║████╗  ██║██╔════╝     ██╔══██╗██║
-██║   ██║██║██████╗     ██║       ██║     ██║   ██║██╔██╗ ██║██║  ███╗    ███████║██║
-╚██╗ ██╔╝██║██╔══╝     ██║       ██║     ██║   ██║██║╚██╗██║██║   ██║    ██╔══██║██║
- ╚████╔╝ ██║███████╗   ██║       ╚██████╗ ╚██████╔╝██║ ╚████║╚██████╔╝    ██║  ██║██║
-  ╚═══╝  ╚═╝╚══════╝   ╚═╝        ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝╚═╝`;
-
 export default function Navbar() {
   const t = useTranslations('Navbar');
   const pathname = usePathname();
@@ -28,14 +21,13 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-canvas border-b border-hairline">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center items-center h-20">
+        <div className="flex justify-center items-center h-14">
           <div className="flex items-center gap-4 md:gap-6 lg:gap-10 xl:gap-14">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 shrink-0">
-              <pre className="hidden xl:block text-[8px] leading-[1.1] text-ink font-mono whitespace-pre select-none" aria-hidden="true">
-                {ASCII_WORDMARK}
-              </pre>
-              <span className="xl:hidden font-mono font-bold text-sm tracking-tight">VT AI</span>
+            <Link href="/" className="flex items-center gap-2 shrink-0">
+              <span className="text-ink font-mono font-bold text-base tracking-tight">
+                [+] VIET TUNG
+              </span>
             </Link>
 
             {/* Nav Links */}
