@@ -48,8 +48,7 @@ RUN mkdir -p /tools/prisma && cd /tools/prisma && npm init -y && npm install pri
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
 # Entrypoint to run DB migrations before starting the server
-COPY --from=builder --chown=nextjs:nodejs /app/scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
-RUN chmod +x /app/docker-entrypoint.sh
+RUN printf '#!/bin/sh\nset -e\n\necho "[+] Running database migrations..."\nnode /tools/prisma/node_modules/prisma/build/index.js db push --skip-generate --accept-data-loss 2>&1\necho "[+] Database ready."\n\nexec "$@"\n' > /app/docker-entrypoint.sh && chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
 
