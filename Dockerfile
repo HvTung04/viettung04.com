@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY prisma ./prisma/
-RUN npm ci
+RUN npm config set fetch-retries 5 && npm config set fetch-timeout 120000 && npm ci --prefer-offline --no-audit --no-fund
 
 # Step 2: Rebuild the source code only when needed
 FROM base AS builder
@@ -42,7 +42,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 # Install Prisma CLI in isolated directory for runtime migrations
-RUN mkdir -p /tools/prisma && cd /tools/prisma && npm init -y && npm install prisma@6.19.2
+RUN mkdir -p /tools/prisma && cd /tools/prisma && npm init -y && npm install prisma@6.19.2 --prefer-offline --no-audit --no-fund
 
 # SQLite data directory on a persistent volume
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
@@ -53,9 +53,9 @@ RUN chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 3333
 
-ENV PORT=3000
+ENV PORT=3333
 ENV HOSTNAME="0.0.0.0"
 # Resolved relative to prisma/schema.prisma → /app/data/dev.db on the volume
 ENV DATABASE_URL="file:../data/dev.db"
