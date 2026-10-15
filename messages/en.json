@@ -1,6 +1,6 @@
 {
   "Index": {
-    "title": "AI Engineer Portfolio | Intelligent Systems"
+    "title": "Hoang Viet Tung — AI Engineer"
   },
   "Navbar": {
     "home": "Home",
@@ -14,10 +14,10 @@
   },
   "Hero": {
     "availableBadge": "Available for Projects",
-    "titlePart1": "AI Engineer building ",
+    "titlePart1": "Hoang Viet Tung — AI engineer building ",
     "titleHighlight": "intelligent systems",
     "titlePart2": " that turn data into products.",
-    "description": "Senior AI Engineer specializing in production-ready machine learning, neural architectures, and scalable data pipelines.",
+    "description": "Hoang Viet Tung is a senior AI engineer specializing in production-ready machine learning, LLMs, computer vision, and scalable data pipelines.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me",
     "alt": "Abstract technical neural network visualization with glowing nodes and connections"
@@ -76,7 +76,7 @@
     "button": "Start a Project"
   },
   "Footer": {
-    "rights": "© 2026 VietTung04 AI Engineer Portfolio. All rights reserved."
+    "rights": "© 2026 Hoang Viet Tung — AI Engineer. All rights reserved."
   },
   "ProjectListPage": {
     "title": "Featured Projects",

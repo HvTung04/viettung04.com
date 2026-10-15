@@ -11,8 +11,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Engineer Portfolio | Intelligent Systems",
-  description: "Senior AI Engineer specializing in production-ready machine learning, neural architectures, and scalable data pipelines.",
+  metadataBase: new URL("https://viettung04.com"),
+  title: {
+    default: "Hoang Viet Tung — AI Engineer | Production Machine Learning",
+    template: "%s | Hoang Viet Tung — AI Engineer",
+  },
+  description:
+    "Hoang Viet Tung is a senior AI engineer building production-ready machine learning systems, LLM applications, computer vision, and scalable data pipelines.",
+  authors: [{ name: "Hoang Viet Tung", url: "https://viettung04.com" }],
+  creator: "Hoang Viet Tung",
 };
 
 export default async function RootLayout({
