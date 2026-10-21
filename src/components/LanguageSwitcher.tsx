@@ -12,8 +12,8 @@ export default function LanguageSwitcher() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'vi', label: 'Tiếng Việt' }
+    { code: 'vi', label: 'Tiếng Việt' },
+    { code: 'en', label: 'English' }
   ];
 
   const currentLang = languages.find(l => l.code === locale) || languages[0];

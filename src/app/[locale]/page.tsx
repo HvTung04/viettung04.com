@@ -41,8 +41,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
       languages: {
-        en: `${SITE_URL}/en`,
         vi: `${SITE_URL}/vi`,
+        en: `${SITE_URL}/en`,
+        'x-default': `${SITE_URL}/vi`,
       },
     },
     openGraph: {
@@ -52,7 +53,8 @@ export async function generateMetadata({
       type: 'website',
       url: `${SITE_URL}/${locale}`,
       siteName: 'Hoang Viet Tung',
-      locale: locale,
+      locale: locale === 'vi' ? 'vi_VN' : 'en_US',
+      alternateLocale: locale === 'vi' ? 'en_US' : 'vi_VN',
     },
     twitter: {
       card: 'summary_large_image',

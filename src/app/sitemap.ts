@@ -3,13 +3,16 @@ import prisma from "@/lib/db";
 
 const SITE_URL = "https://viettung04.com";
 
-type Locale = "en" | "vi";
+type Locale = "vi" | "en";
+
+const DEFAULT_LOCALE: Locale = "vi";
 
 function alternates(path: string) {
   const entry: Record<string, string> = {};
-  for (const locale of ["en", "vi"] as Locale[]) {
+  for (const locale of ["vi", "en"] as Locale[]) {
     entry[locale] = `${SITE_URL}/${locale}${path}`;
   }
+  entry["x-default"] = `${SITE_URL}/${DEFAULT_LOCALE}${path}`;
   return entry;
 }
 
@@ -37,9 +40,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPaths) {
-    const prefix = path === "" ? "" : path;
     entries.push({
-      url: `${SITE_URL}/en${prefix}`,
+      url: `${SITE_URL}/${DEFAULT_LOCALE}${path}`,
       changeFrequency: "weekly",
       priority: path === "" ? 1 : 0.7,
       alternates: { languages: alternates(path) },
@@ -48,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const project of projects) {
     entries.push({
-      url: `${SITE_URL}/en/projects/${project.slug}`,
+      url: `${SITE_URL}/${DEFAULT_LOCALE}/projects/${project.slug}`,
       changeFrequency: "monthly",
       priority: 0.6,
       lastModified: project.updatedAt,
@@ -58,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const blog of blogs) {
     entries.push({
-      url: `${SITE_URL}/en/blog/${blog.slug}`,
+      url: `${SITE_URL}/${DEFAULT_LOCALE}/blog/${blog.slug}`,
       changeFrequency: "monthly",
       priority: 0.6,
       lastModified: blog.updatedAt,
