@@ -328,7 +328,15 @@
       "title": "Technical Arsenal",
       "coreTitle": "Core AI / ML",
       "opsTitle": "Ops & Cloud",
-      "languagesTitle": "Languages"
+      "languagesTitle": "Languages",
+      "coreItems": "PyTorch\nTensorFlow\nTransformers\nScikit-Learn\nXGBoost\nLangChain",
+      "opsItems": "Docker\nKubernetes\nAWS SageMaker\nMLflow\nCI/CD",
+      "languagesItems": "Python\nC++\nSQL\nRust\nBash"
+    },
+    "resume": {
+      "label": "Download Resume",
+      "blurb": "Available in PDF format. Updated January 2026.",
+      "cta": "Download CV [PDF]"
     }
   },
   "BlogList": {

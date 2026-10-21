@@ -3,6 +3,9 @@ import Footer from '@/components/Footer';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { getAboutContent, type AboutLocale } from '@/lib/about-content';
+
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('AboutPage');
@@ -13,45 +16,56 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function AboutPage() {
-  const t = await getTranslations('AboutPage');
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const content = await getAboutContent((locale === 'vi' ? 'vi' : 'en') as AboutLocale);
 
   const timeline = [
     {
-      role: t('timeline.senior.role'),
-      period: t('timeline.senior.period'),
-      company: t('timeline.senior.company'),
-      points: [t('timeline.senior.point1'), t('timeline.senior.point2')],
+      role: content.get('timeline.senior.role'),
+      period: content.get('timeline.senior.period'),
+      company: content.get('timeline.senior.company'),
+      points: [
+        content.get('timeline.senior.point1'),
+        content.get('timeline.senior.point2'),
+      ],
       active: true,
     },
     {
-      role: t('timeline.research.role'),
-      period: t('timeline.research.period'),
-      company: t('timeline.research.company'),
-      points: [t('timeline.research.point1'), t('timeline.research.point2')],
+      role: content.get('timeline.research.role'),
+      period: content.get('timeline.research.period'),
+      company: content.get('timeline.research.company'),
+      points: [
+        content.get('timeline.research.point1'),
+        content.get('timeline.research.point2'),
+      ],
       active: false,
     },
     {
-      role: t('timeline.data.role'),
-      period: t('timeline.data.period'),
-      company: t('timeline.data.company'),
-      points: [t('timeline.data.point1')],
+      role: content.get('timeline.data.role'),
+      period: content.get('timeline.data.period'),
+      company: content.get('timeline.data.company'),
+      points: [content.get('timeline.data.point1')],
       active: false,
     },
   ];
 
   const skillGroups = [
     {
-      title: t('skills.coreTitle'),
-      items: ['PyTorch', 'TensorFlow', 'Transformers', 'Scikit-Learn', 'XGBoost', 'LangChain'],
+      title: content.get('skills.coreTitle'),
+      items: content.getLines('skills.coreItems'),
     },
     {
-      title: t('skills.opsTitle'),
-      items: ['Docker', 'Kubernetes', 'AWS SageMaker', 'MLflow', 'CI/CD'],
+      title: content.get('skills.opsTitle'),
+      items: content.getLines('skills.opsItems'),
     },
     {
-      title: t('skills.languagesTitle'),
-      items: ['Python', 'C++', 'SQL', 'Rust', 'Bash'],
+      title: content.get('skills.languagesTitle'),
+      items: content.getLines('skills.languagesItems'),
     },
   ];
 
@@ -63,55 +77,55 @@ export default async function AboutPage() {
         <section className="mb-24 pt-6 lg:pt-8">
           <div className="mb-4">
             <span className="inline-block bg-surface-dark text-canvas text-[11px] font-mono px-2 py-0.5 rounded">
-              {t('availableBadge')}
+              {content.get('availableBadge')}
             </span>
           </div>
 
           <h1 className="text-[38px] lg:text-[44px] font-bold leading-tight mb-6">
-            {t('titlePart1')}
+            {content.get('titlePart1')}
             <br />
-            <span className="text-accent">{t('titleHighlight')}</span>
+            <span className="text-accent">{content.get('titleHighlight')}</span>
             <br />
-            {t('titlePart2')}
+            {content.get('titlePart2')}
           </h1>
 
           <p className="text-base text-body max-w-2xl leading-relaxed mb-8">
-            {t('description')}
+            {content.get('description')}
           </p>
 
           <div className="flex flex-wrap gap-3">
             <Link href="/projects" className="bg-ink text-canvas hover:bg-ink-deep px-5 py-1.5 rounded text-sm font-mono font-medium transition-colors">
-              {t('viewProjects')}
+              {content.get('viewProjects')}
             </Link>
             <Link href="/contact" className="bg-canvas text-ink border border-hairline-strong hover:border-ink px-5 py-1.5 rounded text-sm font-mono font-medium transition-colors">
-              {t('contactBtn')}
+              {content.get('contactBtn')}
             </Link>
           </div>
         </section>
 
         <section className="mb-24">
           <h2 className="text-base font-bold mb-8">
-            [+] {t('philosophy.title')}
+            [+] {content.get('philosophy.title')}
           </h2>
           <div className="space-y-px">
             <div className="bg-canvas border border-hairline p-8">
-              <h3 className="text-base font-bold text-ink mb-3">[+] {t('philosophy.data.title')}</h3>
-              <p className="text-sm text-body leading-relaxed">{t('philosophy.data.desc')}</p>
+              <h3 className="text-base font-bold text-ink mb-3">[+] {content.get('philosophy.data.title')}</h3>
+              <p className="text-sm text-body leading-relaxed">{content.get('philosophy.data.desc')}</p>
             </div>
             <div className="bg-canvas border border-hairline p-8">
-              <h3 className="text-base font-bold text-ink mb-3">[+] {t('philosophy.scale.title')}</h3>
-              <p className="text-sm text-body leading-relaxed">{t('philosophy.scale.desc')}</p>
+              <h3 className="text-base font-bold text-ink mb-3">[+] {content.get('philosophy.scale.title')}</h3>
+              <p className="text-sm text-body leading-relaxed">{content.get('philosophy.scale.desc')}</p>
             </div>
             <div className="bg-canvas border border-hairline p-8">
-              <h3 className="text-base font-bold text-ink mb-3">[+] {t('philosophy.ethics.title')}</h3>
-              <p className="text-sm text-body leading-relaxed">{t('philosophy.ethics.desc')}</p>
+              <h3 className="text-base font-bold text-ink mb-3">[+] {content.get('philosophy.ethics.title')}</h3>
+              <p className="text-sm text-body leading-relaxed">{content.get('philosophy.ethics.desc')}</p>
             </div>
           </div>
         </section>
 
         <section className="mb-24">
           <h2 className="text-base font-bold mb-8">
-            [+] {t('timeline.title')}
+            [+] {content.get('timeline.title')}
           </h2>
 
           <div className="space-y-0">
@@ -140,7 +154,7 @@ export default async function AboutPage() {
 
         <section className="mb-8">
           <h2 className="text-base font-bold mb-8">
-            [+] {t('skills.title')}
+            [+] {content.get('skills.title')}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -164,17 +178,17 @@ export default async function AboutPage() {
         <section className="mb-8">
           <div className="border border-hairline bg-surface-soft rounded-sm p-8">
             <h3 className="text-sm font-bold text-ink mb-2 uppercase tracking-widest">
-              [ Download Resume ]
+              [ {content.get('resume.label')} ]
             </h3>
             <p className="text-body text-sm mb-6">
-              Available in PDF format. Updated January 2026.
+              {content.get('resume.blurb')}
             </p>
             <a
               href="/resume.pdf"
               download
               className="inline-block bg-ink text-canvas hover:bg-ink-deep px-5 py-2 rounded-sm text-sm font-mono font-medium transition-colors"
             >
-              Download CV [PDF]
+              {content.get('resume.cta')}
             </a>
           </div>
         </section>

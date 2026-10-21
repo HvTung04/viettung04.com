@@ -328,7 +328,15 @@
       "title": "Kho Vũ khí Kỹ thuật",
       "coreTitle": "AI / ML Cốt lõi",
       "opsTitle": "Ops & Cloud",
-      "languagesTitle": "Ngôn ngữ"
+      "languagesTitle": "Ngôn ngữ",
+      "coreItems": "PyTorch\nTensorFlow\nTransformers\nScikit-Learn\nXGBoost\nLangChain",
+      "opsItems": "Docker\nKubernetes\nAWS SageMaker\nMLflow\nCI/CD",
+      "languagesItems": "Python\nC++\nSQL\nRust\nBash"
+    },
+    "resume": {
+      "label": "Tải CV",
+      "blurb": "Có sẵn ở định dạng PDF. Cập nhật tháng 1 năm 2026.",
+      "cta": "Tải CV [PDF]"
     }
   },
   "BlogList": {

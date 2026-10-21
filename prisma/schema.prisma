@@ -219,3 +219,19 @@ model TechnologyTranslation {
 
   @@unique([technologyId, locale])
 }
+
+// Editable copy for the public About page. One row per field per locale.
+// The i18n JSON stays the source of defaults; these rows override it.
+model AboutField {
+  id        String   @id @default(cuid())
+  key       String   // message path, e.g. "philosophy.data.title"
+  locale    String   // 'en', 'vi'
+  group     String   // hero | philosophy | timeline | skills | resume
+  value     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([key, locale])
+  @@index([locale, group])
+}

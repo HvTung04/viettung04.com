@@ -10,6 +10,7 @@ export default function AdminSidebar() {
   const navItems = [
     { name: 'Dashboard', href: '/admin', marker: '[D]' },
     { name: 'Projects', href: '/admin/projects', marker: '[P]' },
+    { name: 'About Page', href: '/admin/about', marker: '[A]' },
     { name: 'Blog', href: '/admin/blogs', marker: '[B]' },
     { name: 'Testimonials', href: '/admin/testimonials', marker: '[T]' },
     { name: 'Services', href: '/admin/services', marker: '[S]' },
