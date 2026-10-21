@@ -36,11 +36,12 @@ export default function LoginForm() {
 
       <div className="space-y-2">
         <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">
-          Email
+          Username
         </label>
         <input
-          name="email"
-          type="email"
+          name="username"
+          type="text"
+          autoComplete="username"
           required
           className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 focus:border-accent focus:bg-surface-dark text-on-dark text-sm font-mono outline-none transition-colors"
           placeholder="viettung.hoang"
@@ -67,10 +68,6 @@ export default function LoginForm() {
       >
         {isSubmitting ? 'Authenticating...' : 'Login'}
       </button>
-
-      <p className="text-center text-xs text-on-dark-muted">
-        viettung.hoang / admin@viettung04
-      </p>
     </form>
   );
 }
