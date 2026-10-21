@@ -5,15 +5,23 @@ import SearchWidget from '@/components/blog/SearchWidget';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Blog | AI Engineer Portfolio',
-    description: 'Technical insights into high-performance computing, neural architectures, and the infrastructure of modern intelligence.',
-    keywords: ['AI Blog', 'Machine Learning', 'Technical Writing', 'Engineering Insights'],
-  };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale,
+    path: '/blog',
+    title: 'Technical Blog — AI Engineering Notes | Hoang Viet Tung',
+    description:
+      'Deep dives into high-performance computing, neural architectures, LLM orchestration, and the infrastructure behind modern AI systems.',
+  });
 }
 
 export default async function BlogListPage({ params }: { params: Promise<{ locale: string }> }) {

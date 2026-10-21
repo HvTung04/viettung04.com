@@ -7,15 +7,23 @@ import ProjectImpactMetrics from '@/components/ProjectImpactMetrics';
 import ProjectCta from '@/components/ProjectCta';
 import prisma from '@/lib/db';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Projects | AI Engineer Portfolio',
-    description: 'A collection of production-grade AI systems spanning Computer Vision, NLP, and Distributed Data Engineering. Focused on high-impact AI solutions.',
-    keywords: ['AI Projects', 'Computer Vision', 'NLP', 'Machine Learning', 'Data Engineering', 'Case Studies'],
-  };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata({
+    locale,
+    path: '/projects',
+    title: 'AI Projects & Case Studies | Hoang Viet Tung',
+    description:
+      'Production-grade AI systems spanning computer vision, NLP, generative AI and distributed data engineering, with measurable business impact.',
+  });
 }
 
 export default async function ProjectsPage() {

@@ -1,11 +1,11 @@
 import prisma from '@/lib/db';
 import { getTranslations } from 'next-intl/server';
 
-export default async function FAQ() {
+export default async function FAQ({ locale }: { locale: string }) {
   const t = await getTranslations('ServicesPage');
-  
+
   const faqs = await prisma.faq.findMany({
-    where: { status: 'ACTIVE' },
+    where: { status: 'ACTIVE', locale },
     orderBy: { order: 'asc' },
   });
 
@@ -17,7 +17,7 @@ export default async function FAQ() {
             FAQ
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-ink tracking-tight">
-            Common Questions
+            {t('faq.title')}
           </h2>
         </div>
 
@@ -36,7 +36,7 @@ export default async function FAQ() {
           </div>
         ) : (
           <div className="text-mute text-sm text-center py-8">
-            No FAQs configured yet.
+            {t('faq.empty')}
           </div>
         )}
       </div>

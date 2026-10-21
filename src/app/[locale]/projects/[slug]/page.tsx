@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import prisma from '@/lib/db';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,7 +13,7 @@ interface ProjectDetailPageProps {
 }
 
 export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const project = await prisma.project.findUnique({
     where: { slug },
     include: { translations: true },
@@ -24,20 +25,22 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
     };
   }
 
-  const tr = project.translations[0];
+  const tr =
+    project.translations.find((t) => t.locale === locale) ??
+    project.translations[0];
   const title = tr?.title ?? project.title;
   const description = tr?.description ?? project.description;
 
-  return {
-    title: `${title} | Case Study`,
-    description: description,
-    keywords: ['Case Study', project.category, 'AI Project', 'Machine Learning'],
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-    },
-  };
+  const images = project.imageUrl ? [{ url: project.imageUrl }] : undefined;
+
+  return buildPageMetadata({
+    locale,
+    path: `/projects/${slug}`,
+    title: `${title} | Hoang Viet Tung`,
+    description,
+    type: 'article',
+    images,
+  });
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {

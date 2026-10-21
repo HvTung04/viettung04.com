@@ -3,17 +3,26 @@ import Footer from '@/components/Footer';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { existsSync } from 'fs';
+import path from 'path';
 import { getAboutContent, type AboutLocale } from '@/lib/about-content';
+import { buildPageMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('AboutPage');
-  return {
-    title: 'About | AI Engineer Portfolio',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'AboutPage' });
+  return buildPageMetadata({
+    locale,
+    path: '/about',
+    title: 'About Hoang Viet Tung — Senior AI Engineer',
     description: t('description'),
-    keywords: ['AI Engineer', 'Machine Learning Engineer', 'About', 'Career', 'Skills'],
-  };
+  });
 }
 
 export default async function AboutPage({
@@ -23,6 +32,7 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const content = await getAboutContent((locale === 'vi' ? 'vi' : 'en') as AboutLocale);
+  const hasResume = existsSync(path.join(process.cwd(), 'public', 'resume.pdf'));
 
   const timeline = [
     {
@@ -183,13 +193,22 @@ export default async function AboutPage({
             <p className="text-body text-sm mb-6">
               {content.get('resume.blurb')}
             </p>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-block bg-ink text-canvas hover:bg-ink-deep px-5 py-2 rounded-sm text-sm font-mono font-medium transition-colors"
-            >
-              {content.get('resume.cta')}
-            </a>
+            {hasResume ? (
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-block bg-ink text-canvas hover:bg-ink-deep px-5 py-2 rounded-sm text-sm font-mono font-medium transition-colors"
+              >
+                {content.get('resume.cta')}
+              </a>
+            ) : (
+              <Link
+                href="/contact"
+                className="inline-block bg-ink text-canvas hover:bg-ink-deep px-5 py-2 rounded-sm text-sm font-mono font-medium transition-colors"
+              >
+                {content.get('resume.requestCta')}
+              </Link>
+            )}
           </div>
         </section>
       </main>

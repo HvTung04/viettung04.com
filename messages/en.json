@@ -336,7 +336,8 @@
     "resume": {
       "label": "Download Resume",
       "blurb": "Available in PDF format. Updated January 2026.",
-      "cta": "Download CV [PDF]"
+      "cta": "Download CV [PDF]",
+      "requestCta": "Request CV [Email]"
     }
   },
   "BlogList": {
@@ -466,6 +467,18 @@
       "submitting": "Submitting...",
       "success": "Booking request sent successfully!",
       "error": "Failed to send request. Please try again."
+    },
+    "faq": {
+      "title": "Common Questions",
+      "empty": "No FAQs configured yet."
     }
+  },
+  "NeuralGraph": {
+    "badge": "Interactive",
+    "title": "Neural Stack",
+    "subtitle": "Every technology and project I ship with, as a living graph. Drag to rotate, scroll to zoom, hover a node to inspect it, click a project to open the case study.",
+    "hint": "DRAG ROTATE · SCROLL ZOOM",
+    "legendProject": "Project",
+    "legendTech": "Technology"
   }
 }

@@ -336,7 +336,8 @@
     "resume": {
       "label": "Tải CV",
       "blurb": "Có sẵn ở định dạng PDF. Cập nhật tháng 1 năm 2026.",
-      "cta": "Tải CV [PDF]"
+      "cta": "Tải CV [PDF]",
+      "requestCta": "Nhận CV qua [Email]"
     }
   },
   "BlogList": {
@@ -466,6 +467,18 @@
       "submitting": "Đang gửi...",
       "success": "Đã gửi yêu cầu đặt lịch thành công!",
       "error": "Gửi yêu cầu thất bại. Vui lòng thử lại."
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "empty": "Chưa có câu hỏi nào được cấu hình."
     }
+  },
+  "NeuralGraph": {
+    "badge": "Tương tác",
+    "title": "Hệ sinh thái Công nghệ",
+    "subtitle": "Toàn bộ công nghệ và dự án tôi thực hiện, dưới dạng một đồ thị sống. Kéo để xoay, cuộn để phóng, di chuột lên một nút để xem chi tiết, nhấp vào dự án để mở case study.",
+    "hint": "KÉO XOAY · CUỘN PHÓNG",
+    "legendProject": "Dự án",
+    "legendTech": "Công nghệ"
   }
 }

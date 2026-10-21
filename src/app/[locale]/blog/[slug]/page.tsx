@@ -6,8 +6,42 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SystemMap from '@/components/blog/SystemMap';
 import NewsletterForm from '@/components/NewsletterForm';
+import { buildPageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+
+  const blog = await prisma.blog.findUnique({
+    where: { slug },
+    include: { translations: true },
+  });
+
+  if (!blog || blog.status !== 'PUBLISHED' || blog.visibility !== 'PUBLIC') {
+    return { title: 'Article Not Found' };
+  }
+
+  const typed = blog as unknown as BlogWithTranslations;
+  const tr = getTranslationByLocale(typed, locale);
+  const title = tr?.title ?? blog.slug;
+  const description = tr?.description ?? '';
+
+  return buildPageMetadata({
+    locale,
+    path: `/blog/${slug}`,
+    title: `${title} | Hoang Viet Tung`,
+    description,
+    type: 'article',
+    publishedTime: blog.createdAt.toISOString(),
+    images: blog.imageUrl ? [{ url: blog.imageUrl }] : undefined,
+  });
+}
 
 type Translation = {
   locale: string;

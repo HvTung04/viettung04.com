@@ -3,18 +3,30 @@ import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('ContactPage');
-  return {
-    title: 'Contact | AI Engineer Portfolio',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'ContactPage' });
+  return buildPageMetadata({
+    locale,
+    path: '/contact',
+    title: 'Contact — Hire AI Engineer Hoang Viet Tung',
     description: t('description'),
-    keywords: ['Contact', 'Hire AI Engineer', 'AI Consulting', 'Project Inquiry'],
-  };
+  });
 }
 
-export default async function ContactPage() {
-  const t = await getTranslations('ContactPage');
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'ContactPage' });
 
   return (
     <div className="bg-canvas font-mono text-ink min-h-screen flex flex-col">
@@ -27,9 +39,9 @@ export default async function ContactPage() {
               <span className="font-mono text-accent text-xs font-medium tracking-widest uppercase mb-4 block">
                 {t('available')}
               </span>
-              <h2 className="text-[38px] md:text-[44px] font-bold text-ink leading-tight">
+              <h1 className="text-[38px] md:text-[44px] font-bold text-ink leading-tight">
                 {t('titlePart1')}<span className="text-accent">{t('titleHighlight')}</span>
-              </h2>
+              </h1>
               <p className="mt-6 text-base text-body max-w-xl leading-relaxed">
                 {t('description')}
               </p>
@@ -44,14 +56,14 @@ export default async function ContactPage() {
               </div>
               <div className="p-6 bg-surface-soft border border-hairline">
                 <p className="font-mono text-[10px] uppercase text-mute mb-2">[+] {t('githubLabel')}</p>
-                <a className="text-sm text-ink hover:underline" href="https://github.com/aiexpert" target="_blank" rel="noopener noreferrer">
-                  github.com/HvTung04
+                <a className="text-sm text-ink hover:underline" href={process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/HvTung04'} target="_blank" rel="noopener noreferrer me">
+                  {process.env.NEXT_PUBLIC_GITHUB_URL || 'github.com/HvTung04'}
                 </a>
               </div>
               <div className="p-6 bg-surface-soft border border-hairline">
                 <p className="font-mono text-[10px] uppercase text-mute mb-2">[+] {t('linkedinLabel')}</p>
-                <a className="text-sm text-ink hover:underline" href="https://linkedin.com/in/aiprofessional" target="_blank" rel="noopener noreferrer">
-                  in/aiprofessional
+                <a className="text-sm text-ink hover:underline" href={process.env.NEXT_PUBLIC_LINKEDIN_URL || '#'} target="_blank" rel="noopener noreferrer me">
+                  {process.env.NEXT_PUBLIC_LINKEDIN_URL || 'linkedin.com/in/your-profile'}
                 </a>
               </div>
               <div className="p-6 bg-surface-soft border border-hairline">

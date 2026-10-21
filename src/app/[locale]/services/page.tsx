@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import prisma from '@/lib/db';
 import ServiceGrid from '@/components/services/ServiceGrid';
 import FAQ from '@/components/FAQ';
+import { buildPageMetadata } from '@/lib/seo';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -11,12 +12,13 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'Navbar' });
-  return {
-    title: `${t('services')} | AI Engineer Portfolio`,
-    description: 'End-to-end AI expertise from research to production-ready deployments. AI System Development, Computer Vision, NLP, and Data Automation services.',
-    keywords: ['AI Services', 'Machine Learning Consulting', 'Computer Vision', 'NLP', 'Data Automation'],
-  };
+  return buildPageMetadata({
+    locale,
+    path: '/services',
+    title: 'AI Services — ML, Computer Vision & LLM | Hoang Viet Tung',
+    description:
+      'End-to-end AI engineering from research to production deployment: AI system development, computer vision, LLM applications, and data automation.',
+  });
 }
 
 export default async function ServicesPage({ params }: Props) {
@@ -138,7 +140,7 @@ export default async function ServicesPage({ params }: Props) {
         </section>
 
         {/* FAQ Section */}
-        <FAQ />
+        <FAQ locale={locale} />
       </main>
       <Footer />
     </div>

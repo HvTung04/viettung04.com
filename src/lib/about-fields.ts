@@ -104,6 +104,7 @@ export const ABOUT_FIELDS: AboutFieldDef[] = [
   { key: 'resume.label', group: 'resume', label: 'Card heading', type: 'text' },
   { key: 'resume.blurb', group: 'resume', label: 'Card description', type: 'longtext' },
   { key: 'resume.cta', group: 'resume', label: 'Button label', type: 'text' },
+  { key: 'resume.requestCta', group: 'resume', label: 'Button label (no PDF)', type: 'text' },
 ];
 
 export const ABOUT_LOCALES = ['en', 'vi'] as const;

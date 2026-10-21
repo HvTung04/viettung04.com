@@ -8,14 +8,14 @@ import TechStack from '@/components/TechStack';
 import Services from '@/components/Services';
 import Cta from '@/components/Cta';
 import Footer from '@/components/Footer';
+import NeuralGraphSection from '@/components/neural-graph/NeuralGraphSection';
 import prisma from '@/lib/db';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
+import { buildPageMetadata, siteJsonLd, type SiteLocale } from '@/lib/seo';
 
 
 export const dynamic = 'force-dynamic';
-
-const SITE_URL = 'https://viettung04.com';
 
 export async function generateMetadata({
   params,
@@ -23,46 +23,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return {
-    title: 'Hoang Viet Tung — AI Engineer | Machine Learning, LLM & Computer Vision',
+
+  return buildPageMetadata({
+    locale,
+    title: 'Hoang Viet Tung — AI Engineer | Machine Learning & LLM',
     description:
       'Hoang Viet Tung is a senior AI engineer specializing in production-ready machine learning, LLM systems, computer vision, and scalable data pipelines. Available for complex AI implementation projects.',
-    keywords: [
-      'Hoang Viet Tung',
-      'Viet Tung Hoang',
-      'AI Engineer',
-      'Machine Learning Engineer',
-      'Computer Vision',
-      'NLP',
-      'LLM',
-      'Data Engineering',
-      'Vietnam AI Engineer',
-    ],
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        vi: `${SITE_URL}/vi`,
-        en: `${SITE_URL}/en`,
-        'x-default': `${SITE_URL}/vi`,
-      },
-    },
-    openGraph: {
-      title: 'Hoang Viet Tung — AI Engineer | Machine Learning, LLM & Computer Vision',
-      description:
-        'Senior AI engineer building production-ready machine learning systems, LLM applications, and computer vision solutions.',
-      type: 'website',
-      url: `${SITE_URL}/${locale}`,
-      siteName: 'Hoang Viet Tung',
-      locale: locale === 'vi' ? 'vi_VN' : 'en_US',
-      alternateLocale: locale === 'vi' ? 'en_US' : 'vi_VN',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Hoang Viet Tung — AI Engineer',
-      description:
-        'Senior AI engineer building production-ready machine learning systems, LLM applications, and computer vision solutions.',
-    },
-  };
+  });
 }
 
 type Props = {
@@ -80,27 +47,9 @@ export default async function HomePage({ params }: Props) {
     include: { techStack: true, metrics: true }
   });
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Hoang Viet Tung',
-    alternateName: 'Viet Tung Hoang',
-    url: `${SITE_URL}/${locale}`,
-    jobTitle: 'AI Engineer',
-    description:
-      'Senior AI engineer specializing in production-ready machine learning, LLM systems, computer vision, and scalable data pipelines.',
-    knowsAbout: [
-      'Machine Learning',
-      'Deep Learning',
-      'LLM',
-      'Computer Vision',
-      'Natural Language Processing',
-      'Data Engineering',
-      'Python',
-      'PyTorch',
-      'TensorFlow',
-    ],
-  };
+  const siteLocale = (locale === 'en' ? 'en' : 'vi') as SiteLocale;
+
+  const jsonLd = siteJsonLd(siteLocale);
 
   return (
     <>
@@ -109,14 +58,17 @@ export default async function HomePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <Hero />
-      <Metrics />
-      <Projects projects={projects} />
-      <Testimonials />
-      <ClientLogos />
-      <TechStack locale={locale} />
-      <Services locale={locale} />
-      <Cta />
+      <main id="main" className="flex-1">
+        <Hero />
+        <NeuralGraphSection locale={locale} />
+        <Metrics />
+        <Projects projects={projects} />
+        <Testimonials />
+        <ClientLogos />
+        <TechStack locale={locale} />
+        <Services locale={locale} />
+        <Cta />
+      </main>
       <Footer />
     </>
   );
