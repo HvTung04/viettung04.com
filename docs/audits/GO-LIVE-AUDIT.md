@@ -80,6 +80,36 @@ Next's default English error page was served for every missing route.
 
 ---
 
+## Deployment verification (image built and run locally)
+
+The image was built and executed to verify the production path end to end, not just the dev server.
+
+| Check | Result |
+|---|---|
+| `docker build` (no `.env` present, like CI) | ✅ passes |
+| Container boot: migrations via `prisma db push` | ✅ "Database ready." |
+| Container boot: auto-seed on an empty database | ✅ 3 projects, 4 services, 4 metrics, 6 clients, 16 technologies, 12 FAQs, 3 blog posts |
+| Container restart with existing data | ✅ seeds skipped, admin edits preserved |
+| Listening port | ✅ 3000 (matches `docker-compose.yml` and the VPS deploy compose) |
+| `/vi`, `/en`, `/about`, `/services`, `/projects`, `/blog`, `/contact` | ✅ 200 |
+| `/sitemap.xml` (12 URLs, projects + blogs, x-default) | ✅ 200 |
+| `/robots.txt` | ✅ 200 |
+| `/opengraph-image` | ✅ 200 `image/png` |
+| `/admin/*` without a session | ✅ 302 → `/admin/login` |
+| Security headers present, no `X-Powered-By` | ✅ |
+| Bilingual content on the VI page (services, metrics, clients, projects, testimonials) | ✅ |
+
+### Bugs found by running the image (all fixed)
+
+1. **The build failed at "Generating static pages"** — `/sitemap.xml` is a static route that queries the database, and the Docker builder stage has no `DATABASE_URL`. The sitemap is now `force-dynamic` and degrades to static routes when the database is unreachable. The builder stage also gets a throwaway SQLite file so no future stray build-time query can break the image.
+2. **Port mismatch** — the image listened on `3333` while the VPS deployment compose maps `3000:3000`. The deployed container would have been unreachable. Standardised on `3000` across `Dockerfile`, `EXPOSE` and `docker-compose.yml`.
+3. **A fresh container had an empty database** — the homepage rendered "No clients configured yet" and the 3D graph had no nodes. The seeds are now compiled to plain JS in the builder stage, copied into the runtime image and run by the entrypoint after migrations. Both are idempotent (they skip when content exists), so admin edits are never overwritten. `SEED_FORCE=1` forces a reset.
+4. **The content seed skipped itself** — its guard checked the projects table, which the project seed had just filled. It now checks the tables it owns.
+5. **Metrics were English-only on the Vietnamese page** — `SiteMetric` had no translation support. Added `SiteMetricTranslation`, locale resolution in the component, and VI fields in the admin forms.
+6. **CI would have been permanently red** — `npm run lint` exited 1 on 115 pre-existing problems. Now 0 errors: the admin route tree is exempt from the plain-anchor rule, and every remaining `any` was replaced with a real type.
+
+---
+
 ## Performance (local production build, Playwright)
 
 | Metric | Mobile | Desktop | Target |
