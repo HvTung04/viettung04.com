@@ -339,6 +339,19 @@ Dữ liệu, code biến đổi, trọng số mô hình và config serving đề
 ];
 
 async function main() {
+  // Idempotency: never clobber content that already exists (the admin panel
+  // may have edited it). SEED_FORCE=1 forces a full reset.
+  const force = process.env.SEED_FORCE === '1';
+  const existing = await prisma.project.count();
+
+  if (existing > 0 && !force) {
+    console.log(
+      `Seed skipped: database already has content (${existing} projects). ` +
+        'Set SEED_FORCE=1 to reset.'
+    );
+    return;
+  }
+
   // --- services ---
   await prisma.serviceTranslation.deleteMany();
   await prisma.service.deleteMany();

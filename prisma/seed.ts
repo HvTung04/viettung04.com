@@ -3,6 +3,20 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Idempotency: this script wipes and recreates projects, so it must never
+  // run against a database that already holds content (the admin panel may
+  // have edited it). SEED_FORCE=1 forces a full reset.
+  const force = process.env.SEED_FORCE === '1';
+  const existing = await prisma.project.count();
+
+  if (existing > 0 && !force) {
+    console.log(
+      `Seed skipped: database already has content (${existing} projects). ` +
+        'Set SEED_FORCE=1 to reset.'
+    );
+    return;
+  }
+
   await prisma.metric.deleteMany();
   await prisma.techStack.deleteMany();
   await prisma.projectTranslation.deleteMany();

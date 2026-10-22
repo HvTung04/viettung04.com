@@ -19,7 +19,20 @@ COPY . .
 
 RUN npx prisma generate
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# Safety net for build-time database access. The builder stage has no real
+# database, so any route that is accidentally prerendered would fail the
+# whole build. Point Prisma at a throwaway SQLite file created here: queries
+# return empty instead of crashing, and the real DATABASE_URL is injected at
+# runtime by docker compose.
+ENV DATABASE_URL="file:/tmp/build.db"
+RUN npx prisma db push --skip-generate --accept-data-loss
+
 RUN npm run build
+
+# Compile the content seeds to plain JS so the runtime image can run them with
+# plain node (no ts-node / devDependencies in the production image).
+RUN npx tsc prisma/seed.ts prisma/seed-content.ts --module commonjs --target es2020 --esModuleInterop --resolveJsonModule --skipLibCheck --outDir /app/seed
 
 # Step 3: Production image
 FROM base AS runner
@@ -41,20 +54,26 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
+# Prisma client + engine: the standalone tracer does not always include the
+# generated client, and the runtime seed needs a working client.
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=nextjs:nodejs /app/seed ./seed
+
 # Install Prisma CLI in isolated directory for runtime migrations
 RUN mkdir -p /tools/prisma && cd /tools/prisma && npm init -y && npm install prisma@6.19.2 --prefer-offline --no-audit --no-fund
 
 # SQLite data directory on a persistent volume
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
-# Entrypoint to run DB migrations before starting the server
-RUN printf '#!/bin/sh\nset -e\n\necho "[+] Running database migrations..."\nnode /tools/prisma/node_modules/prisma/build/index.js db push --skip-generate --accept-data-loss 2>&1\necho "[+] Database ready."\n\nexec "$@"\n' > /app/docker-entrypoint.sh && chmod +x /app/docker-entrypoint.sh
+# Entrypoint: run migrations, seed fresh content, then start the server
+COPY --chown=nextjs:nodejs scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
 
-EXPOSE 3333
+EXPOSE 3000
 
-ENV PORT=3333
+ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 # Resolved relative to prisma/schema.prisma → /app/data/dev.db on the volume
 ENV DATABASE_URL="file:../data/dev.db"

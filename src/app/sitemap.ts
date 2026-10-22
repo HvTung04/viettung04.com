@@ -7,6 +7,11 @@ type Locale = "vi" | "en";
 
 const DEFAULT_LOCALE: Locale = "vi";
 
+// The sitemap reads the database, so it must never be prerendered at build
+// time (the Docker builder stage has no DATABASE_URL). Render it per request
+// and degrade gracefully if the database is unreachable.
+export const dynamic = "force-dynamic";
+
 function alternates(path: string) {
   const entry: Record<string, string> = {};
   for (const locale of ["vi", "en"] as Locale[]) {
@@ -26,16 +31,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
   ];
 
-  const [projects, blogs] = await Promise.all([
-    prisma.project.findMany({
-      where: { status: "ACTIVE", visibility: "PUBLIC" },
-      select: { slug: true, updatedAt: true },
-    }),
-    prisma.blog.findMany({
-      where: { status: "PUBLISHED", visibility: "PUBLIC" },
-      select: { slug: true, updatedAt: true },
-    }),
-  ]);
+  let projects: { slug: string; updatedAt: Date }[] = [];
+  let blogs: { slug: string; updatedAt: Date }[] = [];
+
+  try {
+    [projects, blogs] = await Promise.all([
+      prisma.project.findMany({
+        where: { status: "ACTIVE", visibility: "PUBLIC" },
+        select: { slug: true, updatedAt: true },
+      }),
+      prisma.blog.findMany({
+        where: { status: "PUBLISHED", visibility: "PUBLIC" },
+        select: { slug: true, updatedAt: true },
+      }),
+    ]);
+  } catch (error) {
+    console.error("sitemap: database unavailable, listing static routes only", error);
+  }
 
   const entries: MetadataRoute.Sitemap = [];
 
