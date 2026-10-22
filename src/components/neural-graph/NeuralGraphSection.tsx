@@ -47,7 +47,20 @@ export default async function NeuralGraphSection({ locale }: { locale: string })
         </div>
 
         <div className="relative border border-hairline h-[420px] md:h-[520px] overflow-hidden">
-          <NeuralGraphClient data={data} />
+          <NeuralGraphClient
+            data={data}
+            hud={{
+              system: t('hud.system'),
+              nodes: t('hud.nodes'),
+              links: t('hud.links'),
+              packets: t('hud.packets'),
+              signal: t('hud.signal'),
+              map: t('hud.map'),
+              mapped: t('hud.mapped'),
+              hoverProjects: t('hud.hoverProjects'),
+              drag: t('hud.drag'),
+            }}
+          />
         </div>
 
         {/* Screen-reader and no-WebGL fallback: the same graph as plain text. */}

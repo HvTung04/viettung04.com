@@ -479,6 +479,17 @@
     "subtitle": "Every technology and project I ship with, as a living graph. Drag to rotate, scroll to zoom, hover a node to inspect it, click a project to open the case study.",
     "hint": "DRAG ROTATE · SCROLL ZOOM",
     "legendProject": "Project",
-    "legendTech": "Technology"
+    "legendTech": "Technology",
+    "hud": {
+      "system": "NEURAL STACK v2.0",
+      "nodes": "NODES",
+      "links": "LINKS",
+      "packets": "PACKETS",
+      "signal": "SIGNAL",
+      "map": "MAP",
+      "mapped": "ALL SYSTEMS MAPPED",
+      "hoverProjects": "— HOVER EACH PROJECT NODE",
+      "drag": "DRAG ROTATE · SCROLL ZOOM · CLICK NODES"
+    }
   }
 }

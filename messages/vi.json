@@ -479,6 +479,17 @@
     "subtitle": "Toàn bộ công nghệ và dự án tôi thực hiện, dưới dạng một đồ thị sống. Kéo để xoay, cuộn để phóng, di chuột lên một nút để xem chi tiết, nhấp vào dự án để mở case study.",
     "hint": "KÉO XOAY · CUỘN PHÓNG",
     "legendProject": "Dự án",
-    "legendTech": "Công nghệ"
+    "legendTech": "Công nghệ",
+    "hud": {
+      "system": "HỆ SINH THÁI v2.0",
+      "nodes": "NÚT",
+      "links": "LIÊN KẾT",
+      "packets": "GÓI TÍN HIỆU",
+      "signal": "TÍN HIỆU",
+      "map": "BẢN ĐỒ",
+      "mapped": "ĐÃ LẬP BẢN ĐỒ TOÀN BỘ HỆ THỐNG",
+      "hoverProjects": "— DI CHUỘT LÊN TỪNG NÚT DỰ ÁN",
+      "drag": "KÉO XOAY · CUỘN PHÓNG · NHẤP VÀO CÁC NÚT"
+    }
   }
 }

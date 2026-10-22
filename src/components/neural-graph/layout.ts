@@ -20,9 +20,9 @@ export type GraphData = {
   edges: GraphEdge[];
 };
 
-const RING_RADIUS = 2.5;
-const CLUSTER_RADIUS = 0.72;
-const PROJECT_RADIUS = 4.05;
+const RING_RADIUS = 2.9;
+const CLUSTER_RADIUS = 0.85;
+const PROJECT_RADIUS = 4.6;
 
 function norm(name: string): string {
   return name.trim().toLowerCase();
@@ -93,6 +93,19 @@ export function buildGraphData(
     if (techs.length > 0) {
       edges.push({ from: 'core', to: techs[0].id });
     }
+  });
+
+  // Cross-cluster links: the tail of each category connects to the head of the
+  // next, so the graph reads as a web rather than a set of spokes.
+  orderedCategories.forEach(([, techs], index) => {
+    if (techs.length === 0) return;
+    const nextCategory = orderedCategories[(index + 1) % orderedCategories.length];
+    const nextTechs = nextCategory[1];
+    if (nextTechs.length === 0) return;
+    edges.push({
+      from: techs[techs.length - 1].id,
+      to: nextTechs[0].id,
+    });
   });
 
   projects.forEach((project, projectIndex) => {
