@@ -7,14 +7,19 @@ echo "[+] Database ready."
 
 # Seed public content on a fresh database. Both seeds are no-ops when content
 # already exists, so this never overwrites edits made in the admin panel.
-if [ -f /app/seed/prisma/seed.js ]; then
-  echo "[+] Seeding projects and testimonials..."
-  node /app/seed/prisma/seed.js 2>&1 || echo "[!] Project seeding skipped (non-fatal)"
-fi
+run_seed() {
+  label="$1"
+  for candidate in /app/seed/"$2" /app/seed/prisma/"$2"; do
+    if [ -f "$candidate" ]; then
+      echo "[+] $label..."
+      node "$candidate" 2>&1 || echo "[!] $label skipped (non-fatal)"
+      return 0
+    fi
+  done
+  echo "[!] $label: seed file not found (skipped)"
+}
 
-if [ -f /app/seed/prisma/seed-content.js ]; then
-  echo "[+] Seeding public content..."
-  node /app/seed/prisma/seed-content.js 2>&1 || echo "[!] Content seeding skipped (non-fatal)"
-fi
+run_seed "Seeding projects and testimonials" "seed.js"
+run_seed "Seeding public content" "seed-content.js"
 
 exec "$@"

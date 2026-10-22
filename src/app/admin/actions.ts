@@ -3,6 +3,7 @@
 import prisma from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import type { Prisma } from '@prisma/client';
 import { requireAuth } from './auth';
 
 export async function createProject(formData: FormData) {
@@ -31,10 +32,12 @@ export async function createProject(formData: FormData) {
   const viDescription = (formData.get('viDescription') as string) || '';
   const viContent = (formData.get('viContent') as string) || '';
 
-  const techStack = techStackJson ? JSON.parse(techStackJson) : [];
-  const metrics = metricsJson ? JSON.parse(metricsJson) : [];
+  const techStack: string[] = techStackJson ? JSON.parse(techStackJson) : [];
+  const metrics: { key: string; value: string }[] = metricsJson
+    ? JSON.parse(metricsJson)
+    : [];
 
-  const createData: any = {
+  const createData: Prisma.ProjectCreateInput = {
     title,
     slug,
     description,
@@ -55,7 +58,7 @@ export async function createProject(formData: FormData) {
       create: techStack.map((name: string) => ({ name })),
     },
     metrics: {
-      create: metrics.map((m: any) => ({ key: m.key, value: m.value })),
+      create: metrics.map((m) => ({ key: m.key, value: m.value })),
     },
   };
 
@@ -100,8 +103,10 @@ export async function updateProject(id: string, formData: FormData) {
   const viDescription = (formData.get('viDescription') as string) || '';
   const viContent = (formData.get('viContent') as string) || '';
 
-  const techStack = techStackJson ? JSON.parse(techStackJson) : [];
-  const metrics = metricsJson ? JSON.parse(metricsJson) : [];
+  const techStack: string[] = techStackJson ? JSON.parse(techStackJson) : [];
+  const metrics: { key: string; value: string }[] = metricsJson
+    ? JSON.parse(metricsJson)
+    : [];
 
   // Update base properties
   await prisma.project.update({
@@ -155,7 +160,7 @@ export async function updateProject(id: string, formData: FormData) {
   await prisma.metric.deleteMany({ where: { projectId: id } });
   if (metrics.length > 0) {
     await prisma.metric.createMany({
-      data: metrics.map((m: any) => ({ projectId: id, key: m.key, value: m.value })),
+      data: metrics.map((m) => ({ projectId: id, key: m.key, value: m.value })),
     });
   }
 
@@ -185,7 +190,7 @@ export async function createBlog(formData: FormData) {
   const content = formData.get('content') as string;
   const imageUrl = formData.get('imageUrl') as string;
 
-  const createData: any = {
+  const createData: Prisma.BlogCreateInput = {
     slug,
     category,
     visibility,

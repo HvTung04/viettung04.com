@@ -181,8 +181,22 @@ model SiteMetric {
   description String?  // e.g., "Production ML systems deployed"
   order       Int      @default(0)
   status      String   @default("ACTIVE")
+  translations SiteMetricTranslation[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([status, order])
+}
+
+model SiteMetricTranslation {
+  id          String    @id @default(cuid())
+  locale      String    // 'en', 'vi'
+  label       String
+  description String?
+  metricId    String
+  metric      SiteMetric @relation(fields: [metricId], references: [id], onDelete: Cascade)
+
+  @@unique([metricId, locale])
 }
 
 model Client {

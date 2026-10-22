@@ -32,7 +32,7 @@ RUN npm run build
 
 # Compile the content seeds to plain JS so the runtime image can run them with
 # plain node (no ts-node / devDependencies in the production image).
-RUN npx tsc prisma/seed.ts prisma/seed-content.ts --module commonjs --target es2020 --esModuleInterop --resolveJsonModule --skipLibCheck --outDir /app/seed
+RUN npx tsc prisma/seed.ts prisma/seed-content.ts --rootDir prisma --module commonjs --target es2020 --esModuleInterop --resolveJsonModule --skipLibCheck --outDir /app/seed
 
 # Step 3: Production image
 FROM base AS runner

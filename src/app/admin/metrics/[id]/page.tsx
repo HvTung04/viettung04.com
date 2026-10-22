@@ -9,6 +9,8 @@ export default async function EditMetricPage({ params }: { params: Promise<{ id:
     notFound();
   }
 
+  const viTranslation = metric.translations.find((t) => t.locale === 'vi');
+
   return (
     <div className="px-8 pb-8 max-w-2xl">
       <div className="mb-8">
@@ -26,6 +28,30 @@ export default async function EditMetricPage({ params }: { params: Promise<{ id:
             defaultValue={metric.label}
             className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 text-on-dark text-sm font-mono outline-none focus:border-accent transition-colors"
           />
+        </div>
+
+        <div className="border border-hairline rounded-sm p-4">
+          <h3 className="text-xs font-bold text-on-dark mb-4 uppercase tracking-widest">Vietnamese</h3>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">Label (VI)</label>
+              <input
+                name="viLabel"
+                type="text"
+                defaultValue={viTranslation?.label || ''}
+                className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 text-on-dark text-sm font-mono outline-none focus:border-accent transition-colors"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">Description (VI)</label>
+              <textarea
+                name="viDescription"
+                rows={2}
+                defaultValue={viTranslation?.description || ''}
+                className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 text-on-dark text-sm font-mono outline-none focus:border-accent transition-colors resize-none"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">

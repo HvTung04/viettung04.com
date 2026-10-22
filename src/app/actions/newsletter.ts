@@ -19,7 +19,12 @@ export async function subscribeToNewsletter(formData: FormData) {
     revalidatePath('/admin/newsletter');
     return { success: true };
   } catch (error) {
-    if ((error as any).code === 'P2002') {
+    // Prisma throws a known error object for unique constraint violations.
+    const code =
+      typeof error === 'object' && error !== null && 'code' in error
+        ? (error as { code?: unknown }).code
+        : undefined;
+    if (code === 'P2002') {
       return { success: true, message: 'Already subscribed' };
     }
     console.error('Failed to subscribe to newsletter', error);

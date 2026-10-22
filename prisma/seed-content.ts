@@ -52,10 +52,10 @@ const SERVICES = [
 ];
 
 const METRICS = [
-  { label: 'Years Experience', value: '10', suffix: '+', description: 'Shipping production ML systems' },
-  { label: 'Models Deployed', value: '60', suffix: '+', description: 'Across CV, NLP and generative AI' },
-  { label: 'Avg. Latency', value: '12', suffix: 'ms', description: 'Edge inference at 4K resolution' },
-  { label: 'Clients Served', value: '24', suffix: '', description: 'Startups to enterprise' },
+  { label: 'Years Experience', value: '10', suffix: '+', description: 'Shipping production ML systems', viLabel: 'Năm kinh nghiệm', viDescription: 'Đã triển khai hệ thống ML production' },
+  { label: 'Models Deployed', value: '60', suffix: '+', description: 'Across CV, NLP and generative AI', viLabel: 'Mô hình đã triển khai', viDescription: 'Trong lĩnh vực thị giác máy tính, NLP và AI tạo sinh' },
+  { label: 'Avg. Latency', value: '12', suffix: 'ms', description: 'Edge inference at 4K resolution', viLabel: 'Độ trễ trung bình', viDescription: 'Suy luận edge ở độ phân giải 4K' },
+  { label: 'Clients Served', value: '24', suffix: '', description: 'Startups to enterprise', viLabel: 'Khách hàng đã phục vụ', viDescription: 'Từ startup đến doanh nghiệp lớn' },
 ];
 
 const CLIENTS = [
@@ -341,12 +341,32 @@ Dữ liệu, code biến đổi, trọng số mô hình và config serving đề
 async function main() {
   // Idempotency: never clobber content that already exists (the admin panel
   // may have edited it). SEED_FORCE=1 forces a full reset.
+  // The guard looks at the tables this script owns, not at projects: the
+  // project seed runs separately and must not block this one.
   const force = process.env.SEED_FORCE === '1';
-  const existing = await prisma.project.count();
+  const [serviceCount, technologyCount, metricCount, clientCount, faqCount, blogCount] =
+    await Promise.all([
+      prisma.service.count(),
+      prisma.technology.count(),
+      prisma.siteMetric.count(),
+      prisma.client.count(),
+      prisma.faq.count(),
+      prisma.blog.count(),
+    ]);
 
-  if (existing > 0 && !force) {
+  const alreadySeeded =
+    serviceCount > 0 ||
+    technologyCount > 0 ||
+    metricCount > 0 ||
+    clientCount > 0 ||
+    faqCount > 0 ||
+    blogCount > 0;
+
+  if (alreadySeeded && !force) {
     console.log(
-      `Seed skipped: database already has content (${existing} projects). ` +
+      `Seed skipped: content already present ` +
+        `(services ${serviceCount}, technologies ${technologyCount}, metrics ${metricCount}, ` +
+        `clients ${clientCount}, faqs ${faqCount}, blogs ${blogCount}). ` +
         'Set SEED_FORCE=1 to reset.'
     );
     return;
@@ -377,10 +397,26 @@ async function main() {
   }
 
   // --- metrics ---
+  await prisma.siteMetricTranslation.deleteMany();
   await prisma.siteMetric.deleteMany();
   for (const [index, metric] of METRICS.entries()) {
-    await prisma.siteMetric.create({
-      data: { ...metric, order: index, status: 'ACTIVE' },
+    const created = await prisma.siteMetric.create({
+      data: {
+        label: metric.label,
+        value: metric.value,
+        suffix: metric.suffix,
+        description: metric.description,
+        order: index,
+        status: 'ACTIVE',
+      },
+    });
+    await prisma.siteMetricTranslation.create({
+      data: {
+        metricId: created.id,
+        locale: 'vi',
+        label: metric.viLabel,
+        description: metric.viDescription,
+      },
     });
   }
 

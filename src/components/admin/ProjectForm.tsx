@@ -58,12 +58,12 @@ export default function ProjectForm({ initialData }: { initialData?: ProjectForm
   const [viContent, setViContent] = useState(initialData?.viContent || '');
 
   // Case study fields
-  const [challenge, setChallenge] = useState((initialData as any)?.challenge || '');
-  const [solution, setSolution] = useState((initialData as any)?.solution || '');
-  const [impact, setImpact] = useState((initialData as any)?.impact || '');
-  const [clientName, setClientName] = useState((initialData as any)?.clientName || '');
-  const [timeline, setTimeline] = useState((initialData as any)?.timeline || '');
-  const [budgetRange, setBudgetRange] = useState((initialData as any)?.budgetRange || '');
+  const [challenge, setChallenge] = useState(initialData?.challenge ?? '');
+  const [solution, setSolution] = useState(initialData?.solution ?? '');
+  const [impact, setImpact] = useState(initialData?.impact ?? '');
+  const [clientName, setClientName] = useState(initialData?.clientName ?? '');
+  const [timeline, setTimeline] = useState(initialData?.timeline ?? '');
+  const [budgetRange, setBudgetRange] = useState(initialData?.budgetRange ?? '');
 
   const handleAddTech = () => {
     if (techInput.trim() && !techStack.includes(techInput.trim().toUpperCase())) {

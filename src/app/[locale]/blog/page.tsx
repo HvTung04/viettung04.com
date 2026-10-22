@@ -35,13 +35,23 @@ export default async function BlogListPage({ params }: { params: Promise<{ local
     orderBy: { createdAt: 'desc' },
   });
 
-  const getReadTime = (blog: any) => {
+  type BlogWithTranslations = {
+    id: string;
+    slug: string;
+    category: string;
+    views: number;
+    imageUrl: string | null;
+    createdAt: Date;
+    translations: { locale: string; title: string; description: string; content: string | null }[];
+  };
+
+  const getReadTime = (blog: BlogWithTranslations) => {
     const text = blog.translations[0]?.content || '';
     return Math.max(1, Math.ceil(text.length / 1000));
   };
 
-  const getTitle = (blog: any) => blog.translations.find((tr: any) => tr.locale === resolvedParams.locale)?.title || blog.translations[0]?.title || blog.slug;
-  const getDesc = (blog: any) => blog.translations.find((tr: any) => tr.locale === resolvedParams.locale)?.description || blog.translations[0]?.description || '';
+  const getTitle = (blog: BlogWithTranslations) => blog.translations.find((tr) => tr.locale === resolvedParams.locale)?.title || blog.translations[0]?.title || blog.slug;
+  const getDesc = (blog: BlogWithTranslations) => blog.translations.find((tr) => tr.locale === resolvedParams.locale)?.description || blog.translations[0]?.description || '';
 
   const featured = blogs[0];
   const rest = blogs.slice(1);

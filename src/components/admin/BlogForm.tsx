@@ -3,7 +3,18 @@
 import { useState } from 'react';
 import { createBlog, updateBlog } from '@/app/admin/actions';
 
-export default function BlogForm({ initialData }: { initialData?: any }) {
+export type BlogFormData = {
+  id?: string;
+  slug: string;
+  status: string;
+  category: string;
+  visibility: string;
+  content?: string;
+  imageUrl: string | null;
+  translations?: { locale: string; title: string; description: string; content: string | null }[];
+};
+
+export default function BlogForm({ initialData }: { initialData?: BlogFormData }) {
   const [title, setTitle] = useState(initialData?.translations?.[0]?.title || '');
   const [slug, setSlug] = useState(initialData?.slug || '');
   const [status, setStatus] = useState(initialData?.status || 'DRAFT');
@@ -18,7 +29,7 @@ export default function BlogForm({ initialData }: { initialData?: any }) {
 
   const handleSubmit = (formData: FormData) => {
     formData.append('status', status);
-    if (initialData) {
+    if (initialData?.id) {
       updateBlog(initialData.id, formData);
     } else {
       createBlog(formData);

@@ -61,7 +61,7 @@ export default async function HomePage({ params }: Props) {
       <main id="main" className="flex-1">
         <Hero />
         <NeuralGraphSection locale={locale} />
-        <Metrics />
+        <Metrics locale={locale} />
         <Projects projects={projects} />
         <Testimonials />
         <ClientLogos />

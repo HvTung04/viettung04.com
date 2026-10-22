@@ -20,6 +20,30 @@ export default function NewMetricPage() {
           />
         </div>
 
+        <div className="border border-hairline rounded-sm p-4">
+          <h3 className="text-xs font-bold text-on-dark mb-4 uppercase tracking-widest">Vietnamese</h3>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">Label (VI)</label>
+              <input
+                name="viLabel"
+                type="text"
+                className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 text-on-dark text-sm font-mono outline-none focus:border-accent transition-colors"
+                placeholder="Năm kinh nghiệm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">Description (VI)</label>
+              <textarea
+                name="viDescription"
+                rows={2}
+                className="w-full bg-surface-dark-elevated border border-hairline rounded-sm py-3 px-3 text-on-dark text-sm font-mono outline-none focus:border-accent transition-colors resize-none"
+                placeholder="Đã triển khai hệ thống ML production"
+              />
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="font-mono text-xs uppercase tracking-widest text-on-dark-muted">Value</label>
