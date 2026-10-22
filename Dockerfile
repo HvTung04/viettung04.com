@@ -65,9 +65,15 @@ RUN mkdir -p /tools/prisma && cd /tools/prisma && npm init -y && npm install pri
 # SQLite data directory on a persistent volume
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
-# Entrypoint: run migrations, seed fresh content, then start the server
+# Entrypoint: run migrations, seed fresh content, then start the server.
 COPY --chown=nextjs:nodejs scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
-RUN chmod +x /app/docker-entrypoint.sh
+# Strip CRLF: a CRLF shebang ("#!/bin/sh\r") makes the kernel fail with
+# "exec format error" and the container exits with code 255. The .gitattributes
+# file keeps the checkout LF; this is the belt-and-braces pass. BusyBox sed
+# and tr do not understand "\r", so the octal escape is used.
+RUN tr -d '\015' < /app/docker-entrypoint.sh > /tmp/entrypoint.sh \
+    && mv /tmp/entrypoint.sh /app/docker-entrypoint.sh \
+    && chmod +x /app/docker-entrypoint.sh
 
 USER nextjs
 

@@ -1,0 +1,26 @@
+# Normalise line endings. The repo is developed on Windows (autocrlf=true)
+# and deployed to a Linux container: a CRLF shell script fails with
+# "exec format error" and the container exits with code 255.
+* text=auto eol=lf
+
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+
+# Binary assets keep their bytes
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.db binary
