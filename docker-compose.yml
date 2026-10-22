@@ -7,6 +7,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    # Pass every variable from .env into the container (DISCORD_WEBHOOK_URL,
+    # RESEND_API_KEY, POSTHOG keys, admin credentials, ...). Without this the
+    # app only sees the two variables listed under `environment:` below and
+    # silently skips features like the Discord notification.
+    env_file:
+      - path: .env
+        required: false
     environment:
       - NODE_ENV=production
       - DATABASE_URL=file:../data/dev.db

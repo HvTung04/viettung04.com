@@ -14,9 +14,14 @@ export async function submitBookingForm(formData: FormData) {
 
   // If a Discord webhook is provided, dispatch a notification
   const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
-  if (discordWebhookUrl) {
+  if (!discordWebhookUrl) {
+    console.warn(
+      '[booking] DISCORD_WEBHOOK_URL is not set - notification skipped. ' +
+        'Add it to .env and make sure the container receives it (env_file).'
+    );
+  } else {
     try {
-      await fetch(discordWebhookUrl, {
+      const response = await fetch(discordWebhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,9 +42,18 @@ export async function submitBookingForm(formData: FormData) {
           ],
         }),
       });
+
+      if (response.ok) {
+        console.log('[booking] Discord notification sent (HTTP ' + response.status + ')');
+      } else {
+        const detail = await response.text().catch(() => '');
+        console.error(
+          `[booking] Discord notification FAILED: HTTP ${response.status} ${response.statusText} ${detail.slice(0, 300)}`
+        );
+      }
     } catch (error) {
-      console.error('Failed to send Discord webhook', error);
-      // Fail silently to the user so they still get a success message
+      console.error('[booking] Failed to send Discord webhook', error);
+      // Fail silently to the visitor so they still get a success message
     }
   }
 
